@@ -28,12 +28,11 @@ import zipfile
 import os
 
 # FastMCP import
-from mcp.server import FastMCP
-
+from fastmcp import FastMCP
+from .config import BASE_URL,get_download_url,get_static_url
 # Internal modules
 from .training import TrainingEngine
 from .prediction import PredictionEngine
-from .feature_importance import  FeatureImportanceAnalyzer
 from .model_manager import ModelManager
 from .data_validator import DataValidator
 
@@ -52,14 +51,11 @@ mcp = FastMCP(
     Available tools:
     1. train_svm_classifier - Train an SVM classification model with kernel options and hyperparameter optimization
     2. train_svm_regressor - Train an SVM regression model with kernel options and hyperparameter optimization
-    3. train_xgboost_regressor - Train an XGBoost regression model with advanced features
-    4. train_xgboost_classifier - Train an XGBoost classifier for classification tasks
     5. predict_from_file - Make batch predictions from a data file
     6. predict_from_values - Make real-time predictions from feature values
-    7. analyze_feature_importance - Analyze feature importance of a trained model
-    8. list_models - List all available trained models
-    9. get_model_info - Get detailed information about a specific model
-    10. delete_model - Delete a trained model
+    7. list_models - List all available trained models
+    8. get_model_info - Get detailed information about a specific model
+    9. delete_model - Delete a trained model
     
     Use these tools to build complete ML workflows from training to deployment.
     The SVM tools support multiple kernels (linear, rbf, poly, sigmoid), hyperparameter optimization with Optuna,
@@ -72,16 +68,11 @@ root_dir = Path("./trained_models")
 training_engine = TrainingEngine("trained_models")
 prediction_engine = PredictionEngine("trained_models")
 model_manager = ModelManager("trained_models")
-base_url = "http://localhost:8080"
-# @mcp.custom_route("/hello/{name}", methods=["GET"])
-# async def simple_hello(request: Request) -> PlainTextResponse:
-#     name = request.path_params["name"]
-#     return PlainTextResponse(f"Hello, {name}!")
 
 @mcp.tool()
 async def train_svm_classifier(
     data_source: str,
-    kernel: str = None,
+    kernel: str = "linear", 
     optimize_hyperparameters: bool = True,
     n_trials: int = 20,
     cv_folds: int = 5,

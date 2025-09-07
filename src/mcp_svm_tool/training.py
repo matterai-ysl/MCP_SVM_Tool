@@ -30,7 +30,7 @@ from .academic_report_generator import AcademicReportGenerator
 from .html_report_generator import HTMLReportGenerator
 from .visualization_generator import VisualizationGenerator
 from .svm_wrapper import SVMWrapper
-base_url = "http://127.0.0.1:8080"
+from .config import BASE_URL,get_static_url
 logger = logging.getLogger(__name__)
 
 class TrainingEngine:
@@ -1111,9 +1111,10 @@ class TrainingEngine:
                 model_directory = self.models_dir / model_id
             if 'html_report_path' not in locals():
                 html_report_path = model_directory / "reports" / "training_report.html"
+                html_relative_path = get_static_url(html_report_path) #type: ignore
             if 'zip_path' not in locals():
                 zip_path = model_directory / f"{model_id}_archive.zip"
-            
+                zip_relative_path = get_download_url(zip_path) #type: ignore
             # Calculate training time
             training_time = (datetime.now() - start_time).total_seconds()
             
@@ -1137,8 +1138,9 @@ class TrainingEngine:
                 'feature_importance': feature_importance,
                 'cv_results': cv_results,
                 'performance_summary': self._generate_performance_summary(cv_results, task_type, scoring_metric),
-                "trained_report_summary": f"You can find the html trained report summary in {base_url}/static/{Path(html_report_path).relative_to(self.models_dir).as_posix()}" if html_report_path else None,
-                "trained_details": f"""All detailed training data are saved in {base_url}/download/file/{Path(zip_path).relative_to(self.models_dir.parent).as_posix()},
+
+                "trained_report_summary_html_path": f"You can find the html trained report summary in {html_relative_path}" if html_report_path else None,
+                "trained_details": f"""All detailed training data are saved in {zip_relative_path},
                 which can be downloaded by users for reproducibility and academic research reference.""" if zip_path else None
             }
             
