@@ -1,0 +1,104 @@
+# SVM Tool – Product Requirements Document (PRD)
+
+## 1. Overview
+We will modify and repurpose the existing MCP-XGBOOST-Tool project to develop a new Support Vector Machine (SVM) Tool , which provides an equivalent feature set for SVM models (both classification and regression). The SVM Tool must integrate seamlessly with the existing MCP server, storage conventions, taskmaster workflows, and reporting / visualisation subsystems.
+## 2. Goals
+1. Allow users to **train, evaluate, store, and serve** SVM models via MCP tools and CLI commands.
+2. Provide **global & local feature importance** analysis for SVM models using permutation importance and SHAP (KernelExplainer / LinearExplainer depending on kernel).
+3. Offer **hyper-parameter optimisation** (grid / random search and Optuna support) to find the best SVM configuration.
+4. Generate **HTML & Markdown reports** that mirror the style of the existing XGBoost reports.
+5. Maintain a **consistent directory layout** under `trained_models/<model_id>` for artefacts, logs, and reports.
+6. Expose **prediction** tools comparable to the current `predict_from_file` & `predict_from_values` endpoints.
+
+## 3. Non-Goals
+* GPU-accelerated SVM (e.g. cuML) in the first iteration.
+* Probabilistic SVM calibrations beyond Platt scaling.
+* Deep integration with streaming data or online learning.
+
+## 4. Background & Rationale
+Many users require linear or kernel-based models when tree ensembles are not ideal (e.g. small feature sets, high-dimension sparse data, or specific regulatory constraints).  Providing an SVM Tool within the MCP ecosystem enables fast comparative modelling and improves platform coverage.
+
+## 5. Scope & Functional Requirements
+### 5.1 Training
+* **Tool**: `train_svm_classifier` & `train_svm_regressor` (MCP tools + CLI wrappers).
+* **Input**: CSV file path or pandas-compatible source; `target_dimension` parameter (single target only in v1).
+* **Parameters**:
+  * `kernel` (linear | rbf | poly | sigmoid)
+  * `C`, `gamma`, `degree`, `epsilon` (for SVR)
+  * `class_weight` (for imbalanced classification)
+  * `optimize_hyperparameters` (bool) – choose between simple grid search & Optuna.
+  * `cv_folds`, `scoring_metric` (accuracy/F1 for classifier, MAE/R² for regressor).
+  * `apply_preprocessing` – include standard scaling; categorical encoding left to user for v1.
+* **Output**: Persisted model (`model.pkl`), metrics (`evaluation_metrics.csv`), cross-validation artefacts, preprocessing pipeline, training reports.
+
+### 5.2 Prediction
+* **Tool**: `svm_predict_from_file`, `svm_predict_from_values`.
+* **Behaviour** mirrors XGBoost predict tools.
+* Include optional confidence scores using `decision_function` or `predict_proba` (if `probability=True`).
+
+### 5.3 Feature Importance & Explainability
+* **Global importance**:
+  * **Permutation importance** using `sklearn.inspection.permutation_importance`.
+  * **SHAP** via KernelExplainer (fallback to LinearExplainer for linear kernel).
+* **Local importance**:
+  * SHAP waterfall / force / decision plots.
+* Reuse existing `FeatureImportanceAnalyzer` where possible; add SVM-specific wrappers if needed.
+
+### 5.4 Visualisation
+* Matplotlib / SHAP plots saved as PNG in `feature_plots/` – identical naming convention.
+* Multi-class decision boundary plots for datasets with exactly two features (optional flag `boundary_plot`).
+
+### 5.5 Reporting
+* Extend `html_report_generator` to support SVM sections.
+* Stand-alone `generate_svm_training_report()` & `generate_svm_feature_importance_report()` producing responsive HTML.
+
+### 5.6 Model Storage
+Directory example:
+```
+trained_models/<model_id>/
+  ├── model.pkl
+  ├── metadata.json          # kernel, params, score, timestamps
+  ├── preprocessing_pipeline.pkl
+  ├── evaluation_metrics.csv
+  ├── cross_validation_data/
+  ├── feature_plots/
+  └── reports/
+```
+
+## 6. Technical Requirements & Design Notes
+1. **Language & Frameworks**: Python 3.9+, Scikit-learn ≥1.2, Optuna ≥3.0, SHAP ≥0.43.
+2. **MCP Integration**: Follow existing decorator pattern `@mcp.tool()` for new endpoints.
+3. **Error Handling**: Consistent `logger` usage; graceful fallbacks if SHAP fails.
+4. **Testing**: Unit tests for training, prediction, importance, and hyper-parameter search (pytest).
+5. **Performance**: Use `n_jobs=-1` where applicable; sample-based SHAP to cap runtime on large datasets.
+6. **Security**: Validate and sanitize file inputs; respect existing data validator module.
+
+## 7. Milestones / Task Breakdown (High Level)
+1. **Project Setup** – add dependencies, create module skeletons. (1d)
+2. **Training Tools** – implement classifier & regressor with hyper-parameter tuning. (2-3d)
+3. **Prediction Tools** – mirror XGBoost predictor utilities. (1d)
+4. **Feature Importance** – permutation + SHAP integration. (2d)
+5. **Visualisations** – plots & boundary option. (1d)
+6. **HTML Reports** – extend generators. (1-2d)
+7. **Testing & Examples** – notebooks / CLI tests. (2d)
+8. **Documentation & README Updates** – user guide, API reference. (1d)
+
+## 8. Acceptance Criteria
+* Able to train and save SVM models (classifier & regressor) with chosen kernel.
+* CLI & MCP endpoints return structured JSON matching existing patterns.
+* Feature importance analysis completes without errors for provided datasets.
+* Generated HTML report includes metrics table, plots, and parameter summary.
+* Unit tests pass (>90 % coverage for new modules).
+* README updated with examples for training, predicting, and analysing SVM models.
+
+## 9. Risks & Mitigations
+| Risk | Impact | Mitigation |
+|------|--------|-----------|
+| Large datasets cause kernel SVM scalability issues | Slow training / memory error | Warn users, default sample size cap, suggest `linear` or `rbf` with subset. |
+| SHAP KernelExplainer slow on high-dimensional data | Long analysis time | Use random sampling; allow user to set `max_samples` parameter. |
+| Hyper-parameter search too expensive | Timeouts | Provide early-stopping and max-trials caps. |
+
+## 10. Open Questions
+1. Do we need GPU-accelerated SVM support (cuML) in a future iteration?
+2. Should we auto-detect multi-class vs binary and adjust kernels/hyper-parameters?
+3. Any regulatory compliance constraints (e.g. model interpretability requirements) for certain industries? 
