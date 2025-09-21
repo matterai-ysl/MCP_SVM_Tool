@@ -119,16 +119,16 @@ class DataProcessor:
     def detect_file_format(self, file_path: str) -> str:
         """
         Detect file format based on extension.
-        
+
         Args:
             file_path: Path to the file
-            
+
         Returns:
             File format
         """
         file_path = Path(file_path)
         extension = file_path.suffix.lower()
-        
+
         if extension in ['.xlsx', '.xls']:
             return 'excel'
         elif extension in ['.tsv']:
@@ -138,26 +138,58 @@ class DataProcessor:
         else:
             logger.warning(f"Unknown file format: {extension}, treating as CSV")
             return 'csv'
+
+    def _detect_url_format(self, url: str) -> str:
+        """
+        Detect file format from URL path.
+
+        Args:
+            url: URL to analyze
+
+        Returns:
+            Detected file format
+        """
+        from urllib.parse import urlparse
+        parsed = urlparse(url)
+        path = parsed.path.lower()
+
+        if path.endswith(('.xlsx', '.xls')):
+            return 'excel'
+        elif path.endswith('.tsv'):
+            return 'tsv'
+        elif path.endswith(('.csv', '.txt')):
+            return 'csv'
+        else:
+            # Default to CSV for URLs without clear extension
+            logger.info(f"No clear file extension in URL, defaulting to CSV format")
+            return 'csv'
     
     def load_data(self, file_path: str, **kwargs) -> pd.DataFrame:
         """
-        Load data from file with automatic format detection.
-        
+        Load data from file or URL with automatic format detection.
+
         Args:
-            file_path: Path to the data file
+            file_path: Path to the data file or URL
             **kwargs: Additional arguments for pandas read functions
-            
+
         Returns:
             Loaded dataframe
         """
-        file_path = Path(file_path)
-        
-        if not file_path.exists():
-            raise FileNotFoundError(f"File not found: {file_path}")
-            
-        file_format = self.detect_file_format(file_path)
-        logger.info(f"Loading file: {file_path} (format: {file_format})")
-        
+        # Check if it's a URL
+        is_url = file_path.startswith(('http://', 'https://'))
+
+        if is_url:
+            # URL data source
+            file_format = self._detect_url_format(file_path)
+            logger.info(f"Loading URL: {file_path} (format: {file_format})")
+        else:
+            # Local file data source
+            file_path_obj = Path(file_path)
+            if not file_path_obj.exists():
+                raise FileNotFoundError(f"File not found: {file_path}")
+            file_format = self.detect_file_format(file_path_obj)
+            logger.info(f"Loading file: {file_path} (format: {file_format})")
+
         try:
             if file_format == 'excel':
                 # Try loading Excel with better error handling
@@ -176,21 +208,29 @@ class DataProcessor:
                     else:
                         raise excel_error
             else:
-                # For CSV/TSV files, detect encoding and delimiter
-                encoding = self.detect_encoding(str(file_path))
-                
-                if file_format == 'tsv':
-                    delimiter = '\t'
+                # For CSV/TSV files, handle encoding and delimiter differently for URLs vs files
+                if is_url:
+                    # For URLs, let pandas handle encoding automatically
+                    encoding = None
+                    if file_format == 'tsv':
+                        delimiter = '\t'
+                    else:
+                        delimiter = ','  # Default for URLs
                 else:
-                    delimiter = self.detect_delimiter(str(file_path), encoding)
-                
+                    # For local files, detect encoding and delimiter
+                    encoding = self.detect_encoding(str(file_path))
+                    if file_format == 'tsv':
+                        delimiter = '\t'
+                    else:
+                        delimiter = self.detect_delimiter(str(file_path), encoding)
+
                 # Update kwargs with detected parameters
-                read_kwargs = {
-                    'encoding': encoding,
-                    'sep': delimiter,
-                    **kwargs
-                }
-                
+                read_kwargs = {}
+                if encoding is not None:
+                    read_kwargs['encoding'] = encoding
+                read_kwargs['sep'] = delimiter
+                read_kwargs.update(kwargs)
+
                 df = pd.read_csv(file_path, **read_kwargs)
             
             # Post-loading data cleaning and validation

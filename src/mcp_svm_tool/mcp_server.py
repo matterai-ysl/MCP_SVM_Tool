@@ -1,18 +1,3 @@
-"""
-MCP Server for SVM Machine Learning Tool
-
-This module implements the MCP server using FastMCP and provides core tool functions:
-1. train_svm_classifier - SVM classification model training with comprehensive features
-2. train_svm_regressor - SVM regression model training
-3. train_xgboost_regressor - XGBoost regression model training with comprehensive scoring metrics
-4. train_xgboost_classifier - XGBoost classification model training  
-5. predict_from_file - Batch prediction from file
-6. predict_from_values - Real-time prediction from values
-7. analyze_feature_importance - Feature importance analysis
-8. list_models - List all trained models
-9. get_model_info - Get model detailed information
-10. delete_model - Delete trained model
-"""
 
 import logging
 import traceback
@@ -26,15 +11,18 @@ import asyncio
 from datetime import datetime
 import zipfile
 import os
+import re
 
 # FastMCP import
 from fastmcp import FastMCP
+from fastmcp import Context
 from .config import BASE_URL,get_download_url,get_static_url
 # Internal modules
 from .training import TrainingEngine
 from .prediction import PredictionEngine
 from .model_manager import ModelManager
 from .data_validator import DataValidator
+from .training_queue import get_queue_manager, initialize_queue_manager
 
 from starlette.requests import Request
 from starlette.responses import PlainTextResponse
@@ -42,24 +30,59 @@ from starlette.responses import PlainTextResponse
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# User directory management functions
+def get_user_id(ctx: Optional[Context] = None) -> Optional[str]:
+    """Extract user ID from MCP context."""
+    if ctx is not None and hasattr(ctx, 'request_context') and hasattr(ctx.request_context, 'request'):
+        return ctx.request_context.request.headers.get("user_id", None)
+    return None
+
+def get_user_models_dir(user_id: Optional[str] = None) -> str:
+    """
+    Get user-specific models directory with security cleaning.
+
+    Args:
+        user_id: User identifier, defaults to "default" if None
+
+    Returns:
+        Path to user-specific models directory
+    """
+    if user_id is None or user_id.strip() == "":
+        user_id = "default"
+
+    # Clean user ID to prevent path traversal attacks
+    user_id = re.sub(r'[^\w\-_]', '_', user_id)
+
+    user_dir = Path("trained_models") / user_id
+    user_dir.mkdir(parents=True, exist_ok=True)
+    return str(user_dir)
+
 # Initialize MCP server with detailed instructions
 mcp = FastMCP(
     name="SVM Machine Learning Tool",
     instructions="""
-    This is a comprehensive Machine Learning server providing advanced SVM and XGBoost capabilities.
+    This is a comprehensive Machine Learning server providing advanced SVM capabilities with asynchronous training queue.
     
     Available tools:
     1. train_svm_classifier - Train an SVM classification model with kernel options and hyperparameter optimization
     2. train_svm_regressor - Train an SVM regression model with kernel options and hyperparameter optimization
-    5. predict_from_file - Make batch predictions from a data file
-    6. predict_from_values - Make real-time predictions from feature values
-    7. list_models - List all available trained models
-    8. get_model_info - Get detailed information about a specific model
-    9. delete_model - Delete a trained model
+    3. submit_training_task - Submit a training task to the asynchronous queue
+    4. get_task_status - Get the status of a training task
+    5. list_training_tasks - List all training tasks with optional filters
+    6. cancel_training_task - Cancel a running or queued training task
+    7. get_queue_status - Get overall training queue status
+    8. predict_from_file - Make batch predictions from a data file
+    9. predict_from_values - Make real-time predictions from feature values
+    10. list_models - List all available trained models
+    11. get_model_info - Get detailed information about a specific model
+    12. delete_model - Delete a trained model
     
     Use these tools to build complete ML workflows from training to deployment.
     The SVM tools support multiple kernels (linear, rbf, poly, sigmoid), hyperparameter optimization with Optuna,
     and comprehensive feature importance analysis using permutation importance.
+    
+    The asynchronous training queue allows you to submit training tasks that run in the background,
+    preventing blocking of other operations and allowing concurrent training jobs.
     """
 )
 
@@ -72,7 +95,7 @@ model_manager = ModelManager("trained_models")
 @mcp.tool()
 async def train_svm_classifier(
     data_source: str,
-    kernel: str = "linear", 
+    kernel: str = "linear",
     optimize_hyperparameters: bool = True,
     n_trials: int = 20,
     cv_folds: int = 5,
@@ -80,7 +103,10 @@ async def train_svm_classifier(
     validate_data: bool = True,
     save_model: bool = True,
     apply_preprocessing: bool = True,
-    scaling_method: str = "standard"
+    scaling_method: str = "standard",
+    use_async_queue: bool = True,
+    user_id: str = None,
+    ctx: Context = None
 ) -> Dict[str, Any]:
     """
     Train an SVM classification model with automatic hyperparameter optimization.
@@ -103,13 +129,22 @@ async def train_svm_classifier(
         save_model: Whether to save the trained model (default: True)
         apply_preprocessing: Whether to apply data preprocessing (default: True)
         scaling_method: Scaling method ('standard', 'minmax', 'robust', 'quantile', 'power')
+        use_async_queue: Whether to use asynchronous training queue (default: False)
+        user_id: Optional user identifier for tracking (used with async queue)
         
     Returns:
         Training results including model performance, metadata, and SVM-specific information
+        Or task submission details if using async queue
     """
     try:
         logger.info(f"Training SVM classification model from: {data_source}")
-        # Convert scoring metric to sklearn format
+
+        # Get user ID and user-specific directory
+        if user_id is None:
+            user_id = get_user_id(ctx)
+        user_models_dir = get_user_models_dir(user_id)
+
+        # Convert scoring metric to sklearn format first
         if scoring_metric == 'accuracy':
             scoring_metric = 'accuracy'
         elif scoring_metric == 'f1_weighted':
@@ -123,7 +158,7 @@ async def train_svm_classifier(
         elif scoring_metric == 'roc_auc':
             scoring_metric = 'roc_auc'
         
-        # Validate parameters
+        # Validate parameters first (before any async queue logic)
         valid_kernels = ['linear', 'rbf', 'poly', 'sigmoid']
         if kernel not in valid_kernels and kernel is not None:
             raise ValueError(f"Invalid kernel: {kernel}. Supported kernels: {valid_kernels}")
@@ -132,31 +167,57 @@ async def train_svm_classifier(
         if scoring_metric not in valid_metrics:
             raise ValueError(f"Invalid scoring metric: {scoring_metric}. Supported metrics: {valid_metrics}")
         
-        model_id = str(uuid.uuid4())
-        # Load and validate data for classification
+        # Load and validate data for classification to determine target column
         from .data_utils import DataProcessor
         data_processor = DataProcessor()
         df = data_processor.load_data(data_source)
-        # Validate target_dimension parameter
-        target_dimension = 1
-        if target_dimension <= 0:
-            raise ValueError(f"Target dimension must be a positive integer, got: {target_dimension}")
         
+        # For classification, assume last column is target (target_dimension = 1)
+        target_dimension = 1
         if target_dimension > len(df.columns):
             raise ValueError(f"Target dimension {target_dimension} exceeds number of columns {len(df.columns)}")
         
         # Get target columns (last N columns based on target_dimension)
         target_columns = df.columns[-target_dimension:].tolist()
-        logger.info(f"XGBoost classification with {target_dimension} target(s): {target_columns}")
+        target_column = target_columns[0]  # Single target for classification
         
+        logger.info(f"SVM classification with target column: {target_column}")
+        
+        # Check if using async queue (after parameter validation and data loading)
+        if use_async_queue:
+            logger.info("Using asynchronous training queue")
+            return await submit_svm_training_task(
+                task_type="svm_classification",
+                data_source=data_source,
+                target_column=target_column,  # Use the determined target column
+                kernel=kernel,
+                optimize_hyperparameters=optimize_hyperparameters,
+                n_trials=n_trials,
+                cv_folds=cv_folds,
+                scoring_metric=scoring_metric,
+                validate_data=validate_data,
+                save_model=save_model,
+                apply_preprocessing=apply_preprocessing,
+                scaling_method=scaling_method,
+                user_id=user_id
+            )
+        
+        # Continue with direct training
+        logger.info("Using direct synchronous training")
+
+        model_id = str(uuid.uuid4())
+
+        # Create user-specific training engine
+        user_training_engine = TrainingEngine(user_models_dir)
+
         # Run training in executor to avoid blocking
         result = await asyncio.get_event_loop().run_in_executor(
             None,
-            lambda: training_engine.train_svm_classification(
+            lambda: user_training_engine.train_svm_classification(
                 data_source=data_source,
+                target_column=target_column,  # Use the determined target column
                 model_id=model_id,
                 kernel=kernel,
-                target_column=target_columns if target_dimension > 1 else target_columns[0],
                 optimize_hyperparameters=optimize_hyperparameters,
                 n_trials=n_trials,
                 cv_folds=cv_folds,
@@ -189,7 +250,10 @@ async def train_svm_regressor(
     validate_data: bool = True,
     save_model: bool = True,
     apply_preprocessing: bool = True,
-    scaling_method: str = "standard"
+    scaling_method: str = "standard",
+    use_async_queue: bool = True,
+    user_id: str = None,
+    ctx: Context = None
 ) -> Dict[str, Any]:
     """
     Train an SVM regression model with automatic hyperparameter optimization.
@@ -214,14 +278,22 @@ async def train_svm_regressor(
         save_model: Whether to save the trained model (default: True)
         apply_preprocessing: Whether to apply data preprocessing (default: True)
         scaling_method: Scaling method ('standard', 'minmax', 'robust', 'quantile', 'power')
+        use_async_queue: Whether to use asynchronous training queue (default: True)
+        user_id: Optional user identifier for tracking (used with async queue)
         
     Returns:
         Training results including model performance, metadata, and SVM-specific information
+        Or task submission details if using async queue
     """
     try:
         logger.info(f"Training SVM regression model from: {data_source}")
-        
-        # Validate parameters
+
+        # Get user ID and user-specific directory
+        if user_id is None:
+            user_id = get_user_id(ctx)
+        user_models_dir = get_user_models_dir(user_id)
+
+        # Validate parameters first (before any async queue logic)
         valid_kernels = ['linear', 'rbf', 'poly', 'sigmoid']
         if kernel not in valid_kernels and kernel is not None:
             raise ValueError(f"Invalid kernel: {kernel}. Supported kernels: {valid_kernels}")
@@ -231,12 +303,9 @@ async def train_svm_regressor(
                         'max_error', 'neg_median_absolute_error']
         if scoring_metric not in valid_metrics:
             raise ValueError(f"Invalid scoring metric: {scoring_metric}. Supported metrics: {valid_metrics}")
-        # Validate target_dimension parameter
-
-
-
+        
+        # Validate target_dimension parameter and load data to determine target column
         from .data_utils import DataProcessor
-
         data_processor = DataProcessor()
         df = data_processor.load_data(data_source)       
         if target_dimension <= 0:
@@ -247,19 +316,43 @@ async def train_svm_regressor(
         
         # Get target columns (last N columns based on target_dimension)
         target_columns = df.columns[-target_dimension:].tolist()
+        target_column = target_columns if target_dimension > 1 else target_columns[0]
         
-        logger.info(f"XGBoost multi-target regression with {target_dimension} target(s): {target_columns}")
+        logger.info(f"SVM regression with {target_dimension} target(s): {target_columns}")
         
+        # Check if using async queue (after parameter validation and data loading)
+        if use_async_queue:
+            logger.info("Using asynchronous training queue")
+            return await submit_svm_training_task(
+                task_type="svm_regression",
+                data_source=data_source,
+                target_column=target_column,  # Use the determined target column
+                kernel=kernel,
+                optimize_hyperparameters=optimize_hyperparameters,
+                n_trials=n_trials,
+                cv_folds=cv_folds,
+                scoring_metric=scoring_metric,
+                validate_data=validate_data,
+                save_model=save_model,
+                apply_preprocessing=apply_preprocessing,
+                scaling_method=scaling_method,
+                user_id=user_id
+            )
+        
+        # Continue with direct training
+        logger.info("Using direct synchronous training")
+
         model_id = str(uuid.uuid4())
-    
-        
-        
+
+        # Create user-specific training engine
+        user_training_engine = TrainingEngine(user_models_dir)
+
         # Run training in executor to avoid blocking
         result = await asyncio.get_event_loop().run_in_executor(
             None,
-            lambda: training_engine.train_svm_regression(
+            lambda: user_training_engine.train_svm_regression(
                 data_source=data_source,
-                target_column=target_columns if target_dimension > 1 else target_columns[0],
+                target_column=target_column, # type: ignore # Use the determined target column
                 model_id=model_id,
                 kernel=kernel,
                 optimize_hyperparameters=optimize_hyperparameters,
@@ -283,12 +376,13 @@ async def train_svm_regressor(
         return {"error": error_msg, "traceback": traceback.format_exc()}
 
 @mcp.tool()
-async def predict_from_file(
+async def predict_from_file_svm(
     model_id: str,
     data_source: str,
     output_path: str = None,
     include_confidence: bool = True,
-    generate_report: bool = True
+    generate_report: bool = True,
+    ctx: Context = None
 ) -> Dict[str, Any]:
     """
     Make batch predictions from a data file.
@@ -305,11 +399,18 @@ async def predict_from_file(
     """
     try:
         logger.info(f"Making batch predictions with model {model_id} from file: {data_source}")
-        
+
+        # Get user ID and user-specific directory
+        user_id = get_user_id(ctx)
+        user_models_dir = get_user_models_dir(user_id)
+
+        # Create user-specific prediction engine
+        user_prediction_engine = PredictionEngine(user_models_dir)
+
         # Run prediction in executor to avoid blocking
         result = await asyncio.get_event_loop().run_in_executor(
             None,
-            lambda: prediction_engine.predict_from_file(
+            lambda: user_prediction_engine.predict_from_file(
                 model_id=model_id,
                 data_source=data_source,
                 output_path=output_path,
@@ -328,14 +429,15 @@ async def predict_from_file(
         return {"error": error_msg, "traceback": traceback.format_exc()}
 
 @mcp.tool()
-async def predict_from_values(
+async def predict_from_values_svm(
     model_id: str,
     feature_values: Union[List[float], List[List[float]], Dict[str, float], List[Dict[str, float]]],
     feature_names: List[str] = None,
     include_confidence: bool = True,
     save_intermediate_files: bool = True,
     generate_report: bool = True,
-    output_path: str = None
+    output_path: str = None,
+    ctx: Context = None
 ) -> Dict[str, Any]:
     """
     Make real-time predictions from feature values with CSV export and reporting.
@@ -358,11 +460,18 @@ async def predict_from_values(
     """
     try:
         logger.info(f"Making real-time prediction with model {model_id}")
-        
+
+        # Get user ID and user-specific directory
+        user_id = get_user_id(ctx)
+        user_models_dir = get_user_models_dir(user_id)
+
+        # Create user-specific prediction engine
+        user_prediction_engine = PredictionEngine(user_models_dir)
+
         # Run prediction in executor to avoid blocking
         result = await asyncio.get_event_loop().run_in_executor(
             None,
-            lambda: prediction_engine.predict_from_values(
+            lambda: user_prediction_engine.predict_from_values(
                 model_id=model_id,
                 feature_values=feature_values,
                 feature_names=feature_names,
@@ -383,7 +492,7 @@ async def predict_from_values(
         return {"error": error_msg, "traceback": traceback.format_exc()}
 
 @mcp.tool()
-async def list_models() -> List[Dict[str, Any]]:
+async def list_svm_models(ctx: Context = None) -> List[Dict[str, Any]]:
     """
     List all available trained models.
     
@@ -392,10 +501,17 @@ async def list_models() -> List[Dict[str, Any]]:
     """
     try:
         logger.info("Listing all available models")
-        
+
+        # Get user ID and user-specific directory
+        user_id = get_user_id(ctx)
+        user_models_dir = get_user_models_dir(user_id)
+
+        # Create user-specific model manager
+        user_model_manager = ModelManager(user_models_dir)
+
         # Run in executor to avoid blocking
         models = await asyncio.get_event_loop().run_in_executor(
-            None, model_manager.list_models
+            None, user_model_manager.list_models
         )
         
         logger.info(f"Found {len(models)} available models")
@@ -408,7 +524,7 @@ async def list_models() -> List[Dict[str, Any]]:
         return {"error": error_msg, "traceback": traceback.format_exc()}
 
 @mcp.tool()
-async def get_model_info(model_id: str) -> Dict[str, Any]:
+async def get_svm_model_info(model_id: str, ctx: Context = None) -> Dict[str, Any]:
     """
     Get detailed information about a specific model.
     
@@ -420,10 +536,17 @@ async def get_model_info(model_id: str) -> Dict[str, Any]:
     """
     try:
         logger.info(f"Getting information for model: {model_id}")
-        
+
+        # Get user ID and user-specific directory
+        user_id = get_user_id(ctx)
+        user_models_dir = get_user_models_dir(user_id)
+
+        # Create user-specific model manager
+        user_model_manager = ModelManager(user_models_dir)
+
         # Run in executor to avoid blocking
         model_info = await asyncio.get_event_loop().run_in_executor(
-            None, model_manager.get_model_info, model_id
+            None, user_model_manager.get_model_info, model_id
         )
         
         logger.info("Model information retrieved successfully")
@@ -436,7 +559,7 @@ async def get_model_info(model_id: str) -> Dict[str, Any]:
         return {"error": error_msg, "traceback": traceback.format_exc()}
 
 @mcp.tool()
-async def delete_model(model_id: str) -> Dict[str, Any]:
+async def delete_svm_model(model_id: str, ctx: Context = None) -> Dict[str, Any]:
     """
     Delete a trained model.
     
@@ -448,10 +571,17 @@ async def delete_model(model_id: str) -> Dict[str, Any]:
     """
     try:
         logger.info(f"Deleting model: {model_id}")
-        
+
+        # Get user ID and user-specific directory
+        user_id = get_user_id(ctx)
+        user_models_dir = get_user_models_dir(user_id)
+
+        # Create user-specific model manager
+        user_model_manager = ModelManager(user_models_dir)
+
         # Run in executor to avoid blocking
         result = await asyncio.get_event_loop().run_in_executor(
-            None, model_manager.delete_model, model_id
+            None, user_model_manager.delete_model, model_id
         )
         
         if result.get('success', False):
@@ -463,6 +593,251 @@ async def delete_model(model_id: str) -> Dict[str, Any]:
         
     except Exception as e:
         error_msg = f"Failed to delete model: {str(e)}"
+        logger.error(error_msg)
+        logger.error(traceback.format_exc())
+        return {"error": error_msg, "traceback": traceback.format_exc()}
+
+# Asynchronous Training Queue Tools
+
+
+async def submit_svm_training_task(
+    task_type: str,
+    data_source: str,
+    target_column: Optional[Union[str, List[str]]] = None,
+    kernel: str = None,
+    optimize_hyperparameters: bool = True,
+    n_trials: int = 50,
+    cv_folds: int = 5,
+    scoring_metric: str = None,
+    validate_data: bool = True,
+    save_model: bool = True,
+    apply_preprocessing: bool = True,
+    scaling_method: str = "standard",
+    user_id: str = None
+) -> Dict[str, Any]:
+    """
+    Submit a training task to the asynchronous queue.
+    
+    Args:
+        task_type: Type of training task ('svm_regression' or 'svm_classification')
+        data_source: Path to training data file (CSV, Excel, etc.)
+        target_dimension: Number of target columns for multi-target regression (positive integer)
+        kernel: SVM kernel type ('linear', 'rbf', 'poly', 'sigmoid'), if None, auto-selected
+        optimize_hyperparameters: Whether to run hyperparameter optimization
+        n_trials: Number of optimization trials
+        cv_folds: Number of cross-validation folds
+        scoring_metric: Scoring metric for optimization (auto-selected if None)
+        validate_data: Whether to validate data quality
+        save_model: Whether to save the trained model
+        apply_preprocessing: Whether to apply data preprocessing
+        scaling_method: Scaling method ('standard', 'minmax', 'robust', 'quantile', 'power')
+        user_id: Optional user identifier for tracking
+        
+    Returns:
+        Task submission result with task_id for tracking
+    """
+    try:
+        logger.info(f"Submitting {task_type} training task to queue")
+        
+        # Initialize queue manager if not already running
+        queue_manager = await initialize_queue_manager()
+        
+        # Get user directory for the task
+        user_models_dir = get_user_models_dir(user_id)
+
+        # Prepare task parameters
+        task_params = {
+            'data_source': data_source,
+            'target_column': target_column,
+            'kernel': kernel,
+            'optimize_hyperparameters': optimize_hyperparameters,
+            'n_trials': n_trials,
+            'cv_folds': cv_folds,
+            'scoring_metric': scoring_metric,
+            'validate_data': validate_data,
+            'save_model': save_model,
+            'apply_preprocessing': apply_preprocessing,
+            'scaling_method': scaling_method,
+            'models_dir': user_models_dir
+        }
+        
+        # Submit task to queue
+        task_id = await queue_manager.submit_task(
+            task_type=task_type,
+            params=task_params,
+            user_id=user_id
+        )
+        
+        logger.info(f"Training task submitted successfully: {task_id}")
+        return {
+            'success': True,
+            'task_id': task_id,
+            'task_type': task_type,
+            'message': f'Training task submitted to queue. Use task_id {task_id} to track progress.',
+            'queue_status': await queue_manager.get_queue_status()
+        }
+        
+    except Exception as e:
+        error_msg = f"Failed to submit training task: {str(e)}"
+        logger.error(error_msg)
+        logger.error(traceback.format_exc())
+        return {"error": error_msg, "traceback": traceback.format_exc()}
+
+@mcp.tool()
+async def get_svm_task_status(task_id: str) -> Dict[str, Any]:
+    """
+    Get the status of a specific training task.
+    
+    Args:
+        task_id: ID of the task to check
+        
+    Returns:
+        Task status information or error if task not found
+    """
+    try:
+        logger.info(f"Getting status for task: {task_id}")
+        
+        queue_manager = get_queue_manager()
+        task_status = await queue_manager.get_task_status(task_id)
+        
+        if task_status is None:
+            return {
+                'error': f'Task {task_id} not found',
+                'success': False
+            }
+        
+        logger.info(f"Task {task_id} status retrieved successfully")
+        return {
+            'success': True,
+            **task_status
+        }
+        
+    except Exception as e:
+        error_msg = f"Failed to get task status: {str(e)}"
+        logger.error(error_msg)
+        logger.error(traceback.format_exc())
+        return {"error": error_msg, "traceback": traceback.format_exc()}
+
+@mcp.tool()
+async def list_svm_training_tasks(
+    user_id: str = None,
+    status: str = None,
+    limit: int = 50
+) -> Dict[str, Any]:
+    """
+    List training tasks with optional filters.
+    
+    Args:
+        user_id: Optional user ID filter
+        status: Optional status filter ('queued', 'running', 'completed', 'failed', 'cancelled')
+        limit: Maximum number of tasks to return
+        
+    Returns:
+        List of training tasks
+    """
+    try:
+        logger.info("Listing training tasks")
+        
+        queue_manager = get_queue_manager()
+        
+        # Convert status string to enum if provided
+        status_filter = None
+        if status:
+            from .training_queue import TaskStatus
+            try:
+                status_filter = TaskStatus(status.lower())
+            except ValueError:
+                return {
+                    'error': f'Invalid status: {status}. Valid options: queued, running, completed, failed, cancelled',
+                    'success': False
+                }
+        
+        tasks = await queue_manager.list_tasks(
+            user_id=user_id,
+            status=status_filter
+        )
+        
+        # Apply limit
+        if limit and len(tasks) > limit:
+            tasks = tasks[:limit]
+        
+        logger.info(f"Retrieved {len(tasks)} training tasks")
+        return {
+            'success': True,
+            'tasks': tasks,
+            'total_count': len(tasks),
+            'filters_applied': {
+                'user_id': user_id,
+                'status': status,
+                'limit': limit
+            }
+        }
+        
+    except Exception as e:
+        error_msg = f"Failed to list training tasks: {str(e)}"
+        logger.error(error_msg)
+        logger.error(traceback.format_exc())
+        return {"error": error_msg, "traceback": traceback.format_exc()}
+
+@mcp.tool()
+async def cancel_svm_training_task(task_id: str) -> Dict[str, Any]:
+    """
+    Cancel a training task.
+    
+    Args:
+        task_id: ID of the task to cancel
+        
+    Returns:
+        Cancellation status
+    """
+    try:
+        logger.info(f"Cancelling training task: {task_id}")
+        
+        queue_manager = get_queue_manager()
+        success = await queue_manager.cancel_task(task_id)
+        
+        if success:
+            logger.info(f"Task {task_id} cancelled successfully")
+            return {
+                'success': True,
+                'task_id': task_id,
+                'message': f'Task {task_id} has been cancelled'
+            }
+        else:
+            return {
+                'success': False,
+                'task_id': task_id,
+                'message': f'Task {task_id} could not be cancelled (not found or already completed)'
+            }
+        
+    except Exception as e:
+        error_msg = f"Failed to cancel training task: {str(e)}"
+        logger.error(error_msg)
+        logger.error(traceback.format_exc())
+        return {"error": error_msg, "traceback": traceback.format_exc()}
+
+@mcp.tool()
+async def get_svm_queue_status() -> Dict[str, Any]:
+    """
+    Get overall training queue status information.
+    
+    Returns:
+        Queue status including active tasks, queue length, etc.
+    """
+    try:
+        logger.info("Getting training queue status")
+        
+        queue_manager = get_queue_manager()
+        queue_status = await queue_manager.get_queue_status()
+        
+        logger.info("Queue status retrieved successfully")
+        return {
+            'success': True,
+            **queue_status
+        }
+        
+    except Exception as e:
+        error_msg = f"Failed to get queue status: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
         return {"error": error_msg, "traceback": traceback.format_exc()}

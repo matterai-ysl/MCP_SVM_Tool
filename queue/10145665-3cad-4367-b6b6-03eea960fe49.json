@@ -1,0 +1,20 @@
+{
+  "task_id": "10145665-3cad-4367-b6b6-03eea960fe49",
+  "user_id": "test_user",
+  "task_type": "svm_classification",
+  "params": {
+    "data_source": "test_data/test_classification.csv",
+    "kernel": "linear",
+    "optimize_hyperparameters": true,
+    "n_trials": 5,
+    "cv_folds": 3,
+    "scoring_metric": "accuracy"
+  },
+  "status": "running",
+  "created_at": "2025-09-08T00:02:37.558962",
+  "started_at": "2025-09-08T00:02:37.560570",
+  "completed_at": null,
+  "progress": 0.0,
+  "error_message": null,
+  "result": null
+}

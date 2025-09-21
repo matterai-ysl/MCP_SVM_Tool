@@ -1,0 +1,20 @@
+{
+  "task_id": "8614b05c-1de3-4bb8-b04b-19b98709700d",
+  "user_id": "cancel_test",
+  "task_type": "svm_classification",
+  "params": {
+    "data_source": "test_data/test_classification.csv",
+    "target_column": "species",
+    "kernel": null,
+    "optimize_hyperparameters": true,
+    "n_trials": 50,
+    "cv_folds": 5
+  },
+  "status": "cancelled",
+  "created_at": "2025-09-08T00:03:34.631679",
+  "started_at": "2025-09-08T00:03:34.632826",
+  "completed_at": "2025-09-08T00:03:36.635404",
+  "progress": 0.0,
+  "error_message": null,
+  "result": null
+}

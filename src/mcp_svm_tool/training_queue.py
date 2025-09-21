@@ -293,19 +293,29 @@ class TrainingQueueManager:
             
             try:
                 logger.info(f"Executing task {task.task_id} ({task.task_type})")
-                
+
+                # Configure matplotlib to use non-GUI backend for background tasks
+                import matplotlib
+                matplotlib.use('Agg')  # Use Anti-Grain Geometry backend (no GUI)
+
                 # Import training engine here to avoid circular imports
                 from .training import TrainingEngine
-                training_engine = TrainingEngine()
-                
-                # Execute the actual training using RandomForest
-                if task.task_type == "regression":
+
+                # Get user-specific models directory from task parameters
+                models_dir = task.params.get('models_dir', 'trained_models')
+                training_engine = TrainingEngine(models_dir)
+
+                # Remove models_dir from params before passing to training functions
+                training_params = {k: v for k, v in task.params.items() if k != 'models_dir'}
+
+                # Execute the actual training in executor to avoid blocking
+                if task.task_type == "svm_regression":
                     result = await asyncio.get_event_loop().run_in_executor(
-                        None, lambda: training_engine.train_random_forest(**task.params)
+                        None, lambda: training_engine.train_svm_regression(**training_params)
                     )
-                elif task.task_type == "classification":
+                elif task.task_type == "svm_classification":
                     result = await asyncio.get_event_loop().run_in_executor(
-                        None, lambda: training_engine.train_classification_forest(**task.params)
+                        None, lambda: training_engine.train_svm_classification(**training_params)
                     )
                 else:
                     raise ValueError(f"Unknown task type: {task.task_type}")

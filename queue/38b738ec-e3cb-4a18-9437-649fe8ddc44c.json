@@ -1,0 +1,21 @@
+{
+  "task_id": "38b738ec-e3cb-4a18-9437-649fe8ddc44c",
+  "user_id": "quick_test",
+  "task_type": "svm_classification",
+  "params": {
+    "data_source": "test_data/simple_test.csv",
+    "target_column": "target",
+    "kernel": "linear",
+    "optimize_hyperparameters": false,
+    "n_trials": 1,
+    "cv_folds": 2,
+    "validate_data": false
+  },
+  "status": "failed",
+  "created_at": "2025-09-08T00:50:07.341931",
+  "started_at": "2025-09-08T00:50:07.342361",
+  "completed_at": "2025-09-08T00:50:08.454442",
+  "progress": 0.0,
+  "error_message": "name 'get_download_url' is not defined",
+  "result": null
+}

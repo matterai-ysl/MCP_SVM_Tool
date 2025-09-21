@@ -1,0 +1,21 @@
+{
+  "task_id": "cb2c7b4a-e483-4f08-a9a0-7082ab9a9221",
+  "user_id": "test_user",
+  "task_type": "svm_classification",
+  "params": {
+    "data_source": "test_data/test_classification.csv",
+    "target_column": "species",
+    "kernel": "linear",
+    "optimize_hyperparameters": true,
+    "n_trials": 5,
+    "cv_folds": 3,
+    "scoring_metric": "accuracy"
+  },
+  "status": "failed",
+  "created_at": "2025-09-08T00:46:15.774604",
+  "started_at": "2025-09-08T00:46:15.776169",
+  "completed_at": "2025-09-08T00:46:20.445641",
+  "progress": 0.0,
+  "error_message": "cannot access local variable 'html_relative_path' where it is not associated with a value",
+  "result": null
+}

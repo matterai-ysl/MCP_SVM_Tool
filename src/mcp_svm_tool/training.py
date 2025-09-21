@@ -30,7 +30,7 @@ from .academic_report_generator import AcademicReportGenerator
 from .html_report_generator import HTMLReportGenerator
 from .visualization_generator import VisualizationGenerator
 from .svm_wrapper import SVMWrapper
-from .config import BASE_URL,get_static_url
+from .config import BASE_URL,get_static_url,get_download_url
 logger = logging.getLogger(__name__)
 
 class TrainingEngine:
@@ -762,6 +762,7 @@ class TrainingEngine:
             optimization_results = {}
             optimizer = None
             optimized_params = None
+            final_model = None  # Initialize to avoid undefined variable errors
             
             if optimize_hyperparameters:
                 try:
@@ -825,6 +826,18 @@ class TrainingEngine:
                             logger.warning(f"Could not save failed optimization history: {save_error}")
             else:
                 optimized_params = base_params
+                # Create model for non-optimization case
+                if task_type == "classification":
+                    final_model = model_class(**optimized_params)
+                else:  # regression
+                    final_model = model_class(**optimized_params)
+            
+            # Ensure we have a model
+            if final_model is None:
+                if task_type == "classification":
+                    final_model = model_class(**optimized_params)
+                else:  # regression
+                    final_model = model_class(**optimized_params)
             
             # Train final model with optimized parameters
             logger.info("Training final SVM model")
@@ -1111,10 +1124,14 @@ class TrainingEngine:
                 model_directory = self.models_dir / model_id
             if 'html_report_path' not in locals():
                 html_report_path = model_directory / "reports" / "training_report.html"
-                html_relative_path = get_static_url(html_report_path) #type: ignore
+            
+            # Initialize relative paths
+            html_relative_path = get_static_url(html_report_path) if 'html_report_path' in locals() and html_report_path else None #type: ignore
+            
             if 'zip_path' not in locals():
                 zip_path = model_directory / f"{model_id}_archive.zip"
-                zip_relative_path = get_download_url(zip_path) #type: ignore
+            
+            zip_relative_path = get_download_url(zip_path) if 'zip_path' in locals() and zip_path else None #type: ignore
             # Calculate training time
             training_time = (datetime.now() - start_time).total_seconds()
             
@@ -1136,7 +1153,7 @@ class TrainingEngine:
                 'target_names': target_column,
                 'best_hyperparameters': optimized_params or base_params,
                 'feature_importance': feature_importance,
-                'cv_results': cv_results,
+                # 'cv_results': cv_results,
                 'performance_summary': self._generate_performance_summary(cv_results, task_type, scoring_metric),
 
                 "trained_report_summary_html_path": f"You can find the html trained report summary in {html_relative_path}" if html_report_path else None,

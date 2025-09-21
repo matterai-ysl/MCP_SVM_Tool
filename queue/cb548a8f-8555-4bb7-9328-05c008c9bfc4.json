@@ -1,0 +1,174 @@
+{
+  "task_id": "cb548a8f-8555-4bb7-9328-05c008c9bfc4",
+  "user_id": "quick_test",
+  "task_type": "svm_classification",
+  "params": {
+    "data_source": "test_data/simple_test.csv",
+    "target_column": "target",
+    "kernel": "linear",
+    "optimize_hyperparameters": false,
+    "n_trials": 1,
+    "cv_folds": 2,
+    "validate_data": false
+  },
+  "status": "completed",
+  "created_at": "2025-09-08T01:30:05.353030",
+  "started_at": "2025-09-08T01:30:05.353227",
+  "completed_at": "2025-09-08T01:30:06.958986",
+  "progress": 100.0,
+  "error_message": null,
+  "result": {
+    "model_id": "943fac67-8829-42cd-b58e-f7ed87314519",
+    "algorithm": "SVM_Classification",
+    "task_type": "classification",
+    "kernel": "linear",
+    "training_time_seconds": 0.560725,
+    "data_shape": {
+      "n_samples": 60,
+      "n_features": 2
+    },
+    "feature_names": [
+      "feature1",
+      "feature2"
+    ],
+    "target_names": "target",
+    "best_hyperparameters": {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": "scale",
+      "degree": 3
+    },
+    "feature_importance": {
+      "permutation": {
+        "feature1": {
+          "importance_mean": 0.25999999999999995,
+          "importance_std": 0.06463573143221775
+        },
+        "feature2": {
+          "importance_mean": 0.30666666666666664,
+          "importance_std": 0.0454606056566195
+        }
+      }
+    },
+    "cv_results": {
+      "test_scores": {
+        "ACCURACY": {
+          "scores": [
+            1.0,
+            0.9333333333333333
+          ],
+          "mean": 0.9666666666666667,
+          "std": 0.033333333333333326,
+          "min": 0.9333333333333333,
+          "max": 1.0
+        },
+        "F1": {
+          "scores": [
+            1.0,
+            0.9320574162679426
+          ],
+          "mean": 0.9660287081339713,
+          "std": 0.03397129186602871,
+          "min": 0.9320574162679426,
+          "max": 1.0
+        },
+        "PRECISION": {
+          "scores": [
+            1.0,
+            0.94
+          ],
+          "mean": 0.97,
+          "std": 0.030000000000000027,
+          "min": 0.94,
+          "max": 1.0
+        },
+        "RECALL": {
+          "scores": [
+            1.0,
+            0.9333333333333333
+          ],
+          "mean": 0.9666666666666667,
+          "std": 0.033333333333333326,
+          "min": 0.9333333333333333,
+          "max": 1.0
+        }
+      },
+      "train_scores": {
+        "ACCURACY": {
+          "scores": [
+            0.9666666666666667,
+            1.0
+          ],
+          "mean": 0.9833333333333334,
+          "std": 0.016666666666666663,
+          "min": 0.9666666666666667,
+          "max": 1.0
+        },
+        "F1": {
+          "scores": [
+            0.9668571428571427,
+            1.0
+          ],
+          "mean": 0.9834285714285713,
+          "std": 0.016571428571428626,
+          "min": 0.9668571428571427,
+          "max": 1.0
+        },
+        "PRECISION": {
+          "scores": [
+            0.9692307692307692,
+            1.0
+          ],
+          "mean": 0.9846153846153847,
+          "std": 0.015384615384615385,
+          "min": 0.9692307692307692,
+          "max": 1.0
+        },
+        "RECALL": {
+          "scores": [
+            0.9666666666666667,
+            1.0
+          ],
+          "mean": 0.9833333333333334,
+          "std": 0.016666666666666663,
+          "min": 0.9666666666666667,
+          "max": 1.0
+        }
+      },
+      "fit_times": "[0.00021982 0.00021124]",
+      "score_times": "[0.00150824 0.00111008]",
+      "timing": {
+        "fit_time_mean": 0.0002155303955078125,
+        "fit_time_std": 4.291534423828125e-06,
+        "score_time_mean": 0.0013091564178466797,
+        "score_time_std": 0.0001990795135498047
+      },
+      "task_type": "classification",
+      "cv_folds": 2,
+      "data_shape": [
+        60,
+        2
+      ],
+      "y_true": "[0 0 1 0 0 1 1 1 1 1 0 1 1 1 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0 0\n 1 1 1 0 0 1 0 1 0 1 1 0 1 1 1 0 0 0 1 0 0 1 0]",
+      "y_pred_cv": "[0 0 1 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0 0\n 1 1 1 0 0 1 0 1 0 1 1 0 1 1 1 0 0 0 1 0 1 1 0]",
+      "y_pred_proba_cv": "[[0.54220402 0.45779598]\n [0.72800013 0.27199987]\n [0.32530319 0.67469681]\n [0.72421238 0.27578762]\n [0.49459539 0.50540461]\n [0.24083653 0.75916347]\n [0.26923056 0.73076944]\n [0.31186272 0.68813728]\n [0.33225171 0.66774829]\n [0.26023528 0.73976472]\n [0.68474891 0.31525109]\n [0.22587411 0.77412589]\n [0.38524689 0.61475311]\n [0.31651079 0.68348921]\n [0.1889883  0.8110117 ]\n [0.64976562 0.35023438]\n [0.21410108 0.78589892]\n [0.39985983 0.60014017]\n [0.27117792 0.72882208]\n [0.27570997 0.72429003]\n [0.73245572 0.26754428]\n [0.31921434 0.68078566]\n [0.27466672 0.72533328]\n [0.64188963 0.35811037]\n [0.21679899 0.78320101]\n [0.37280165 0.62719835]\n [0.45346803 0.54653197]\n [0.75801188 0.24198812]\n [0.25459518 0.74540482]\n [0.80620431 0.19379569]\n [0.30667155 0.69332845]\n [0.26913579 0.73086421]\n [0.78723633 0.21276367]\n [0.74861455 0.25138545]\n [0.37014787 0.62985213]\n [0.75613305 0.24386695]\n [0.7670454  0.2329546 ]\n [0.46576042 0.53423958]\n [0.36324165 0.63675835]\n [0.2500041  0.7499959 ]\n [0.56640815 0.43359185]\n [0.68404382 0.31595618]\n [0.2332904  0.7667096 ]\n [0.76828259 0.23171741]\n [0.45857874 0.54142126]\n [0.76832449 0.23167551]\n [0.2568547  0.7431453 ]\n [0.21976153 0.78023847]\n [0.65561004 0.34438996]\n [0.35169733 0.64830267]\n [0.25068291 0.74931709]\n [0.18222367 0.81777633]\n [0.54918059 0.45081941]\n [0.69513785 0.30486215]\n [0.50989614 0.49010386]\n [0.32668126 0.67331874]\n [0.64487238 0.35512762]\n [0.49003074 0.50996926]\n [0.17203006 0.82796994]\n [0.78700822 0.21299178]]",
+      "saved_files": {
+        "original_data": "trained_models/943fac67-8829-42cd-b58e-f7ed87314519/cross_validation_data/943fac67-8829-42cd-b58e-f7ed87314519_original_data.csv",
+        "preprocessed_data": "trained_models/943fac67-8829-42cd-b58e-f7ed87314519/cross_validation_data/943fac67-8829-42cd-b58e-f7ed87314519_preprocessed_data.csv",
+        "cv_predictions_processed": "trained_models/943fac67-8829-42cd-b58e-f7ed87314519/cross_validation_data/943fac67-8829-42cd-b58e-f7ed87314519_cv_predictions_processed.csv",
+        "cv_predictions_original": "trained_models/943fac67-8829-42cd-b58e-f7ed87314519/cross_validation_data/943fac67-8829-42cd-b58e-f7ed87314519_cv_predictions_original.csv",
+        "roc_curves": "trained_models/943fac67-8829-42cd-b58e-f7ed87314519/cross_validation_data/943fac67-8829-42cd-b58e-f7ed87314519_roc_curves.png"
+      },
+      "cv_predictions": {
+        "y_true_processed": "[0 0 1 0 0 1 1 1 1 1 0 1 1 1 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0 0\n 1 1 1 0 0 1 0 1 0 1 1 0 1 1 1 0 0 0 1 0 0 1 0]",
+        "y_pred_processed": "[0 0 1 0 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 0 1 1 0 0 1 0 0\n 1 1 1 0 0 1 0 1 0 1 1 0 1 1 1 0 0 0 1 0 1 1 0]",
+        "y_pred_proba_processed": "[[0.54220402 0.45779598]\n [0.72800013 0.27199987]\n [0.32530319 0.67469681]\n [0.72421238 0.27578762]\n [0.49459539 0.50540461]\n [0.24083653 0.75916347]\n [0.26923056 0.73076944]\n [0.31186272 0.68813728]\n [0.33225171 0.66774829]\n [0.26023528 0.73976472]\n [0.68474891 0.31525109]\n [0.22587411 0.77412589]\n [0.38524689 0.61475311]\n [0.31651079 0.68348921]\n [0.1889883  0.8110117 ]\n [0.64976562 0.35023438]\n [0.21410108 0.78589892]\n [0.39985983 0.60014017]\n [0.27117792 0.72882208]\n [0.27570997 0.72429003]\n [0.73245572 0.26754428]\n [0.31921434 0.68078566]\n [0.27466672 0.72533328]\n [0.64188963 0.35811037]\n [0.21679899 0.78320101]\n [0.37280165 0.62719835]\n [0.45346803 0.54653197]\n [0.75801188 0.24198812]\n [0.25459518 0.74540482]\n [0.80620431 0.19379569]\n [0.30667155 0.69332845]\n [0.26913579 0.73086421]\n [0.78723633 0.21276367]\n [0.74861455 0.25138545]\n [0.37014787 0.62985213]\n [0.75613305 0.24386695]\n [0.7670454  0.2329546 ]\n [0.46576042 0.53423958]\n [0.36324165 0.63675835]\n [0.2500041  0.7499959 ]\n [0.56640815 0.43359185]\n [0.68404382 0.31595618]\n [0.2332904  0.7667096 ]\n [0.76828259 0.23171741]\n [0.45857874 0.54142126]\n [0.76832449 0.23167551]\n [0.2568547  0.7431453 ]\n [0.21976153 0.78023847]\n [0.65561004 0.34438996]\n [0.35169733 0.64830267]\n [0.25068291 0.74931709]\n [0.18222367 0.81777633]\n [0.54918059 0.45081941]\n [0.69513785 0.30486215]\n [0.50989614 0.49010386]\n [0.32668126 0.67331874]\n [0.64487238 0.35512762]\n [0.49003074 0.50996926]\n [0.17203006 0.82796994]\n [0.78700822 0.21299178]]",
+        "y_true_original": "['class_A' 'class_A' 'class_B' 'class_A' 'class_A' 'class_B' 'class_B'\n 'class_B' 'class_B' 'class_B' 'class_A' 'class_B' 'class_B' 'class_B'\n 'class_B' 'class_A' 'class_B' 'class_B' 'class_B' 'class_B' 'class_A'\n 'class_B' 'class_B' 'class_A' 'class_B' 'class_B' 'class_B' 'class_A'\n 'class_B' 'class_A' 'class_B' 'class_B' 'class_A' 'class_A' 'class_B'\n 'class_A' 'class_A' 'class_B' 'class_B' 'class_B' 'class_A' 'class_A'\n 'class_B' 'class_A' 'class_B' 'class_A' 'class_B' 'class_B' 'class_A'\n 'class_B' 'class_B' 'class_B' 'class_A' 'class_A' 'class_A' 'class_B'\n 'class_A' 'class_A' 'class_B' 'class_A']",
+        "y_pred_original": "['class_A' 'class_A' 'class_B' 'class_A' 'class_B' 'class_B' 'class_B'\n 'class_B' 'class_B' 'class_B' 'class_A' 'class_B' 'class_B' 'class_B'\n 'class_B' 'class_A' 'class_B' 'class_B' 'class_B' 'class_B' 'class_A'\n 'class_B' 'class_B' 'class_A' 'class_B' 'class_B' 'class_B' 'class_A'\n 'class_B' 'class_A' 'class_B' 'class_B' 'class_A' 'class_A' 'class_B'\n 'class_A' 'class_A' 'class_B' 'class_B' 'class_B' 'class_A' 'class_A'\n 'class_B' 'class_A' 'class_B' 'class_A' 'class_B' 'class_B' 'class_A'\n 'class_B' 'class_B' 'class_B' 'class_A' 'class_A' 'class_A' 'class_B'\n 'class_A' 'class_B' 'class_B' 'class_A']"
+      }
+    },
+    "performance_summary": "Classification model achieved 0.967±0.033 accuracy and 0.966 F1-score (2-fold CV)",
+    "trained_report_summary_html_path": "You can find the html trained report summary in http://localhost:8120/static/943fac67-8829-42cd-b58e-f7ed87314519/training_report.html",
+    "trained_details": "All detailed training data are saved in http://localhost:8120/download/file/archives/943fac67-8829-42cd-b58e-f7ed87314519_20250908_013006.zip,\n                which can be downloaded by users for reproducibility and academic research reference."
+  }
+}

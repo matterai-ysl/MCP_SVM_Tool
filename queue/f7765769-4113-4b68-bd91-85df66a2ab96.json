@@ -1,0 +1,21 @@
+{
+  "task_id": "f7765769-4113-4b68-bd91-85df66a2ab96",
+  "user_id": "test_user",
+  "task_type": "svm_regression",
+  "params": {
+    "data_source": "test_data/test_regression.csv",
+    "target_dimension": 1,
+    "kernel": "rbf",
+    "optimize_hyperparameters": true,
+    "n_trials": 5,
+    "cv_folds": 3,
+    "scoring_metric": "r2"
+  },
+  "status": "failed",
+  "created_at": "2025-09-08T00:02:37.559077",
+  "started_at": "2025-09-08T00:02:38.487790",
+  "completed_at": "2025-09-08T00:02:38.489603",
+  "progress": 0.0,
+  "error_message": "TrainingEngine._train_svm_model() got an unexpected keyword argument 'target_dimension'",
+  "result": null
+}

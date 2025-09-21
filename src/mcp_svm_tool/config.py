@@ -1,6 +1,6 @@
 BASE_URL = "http://localhost:8120"
 DOWNLOAD_URL = "./trained_models"
-MCP_PORT = 8130
+MCP_PORT = 8050
 from pathlib import Path
 
 

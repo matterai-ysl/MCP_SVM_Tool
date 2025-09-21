@@ -1,0 +1,26 @@
+{
+  "task_id": "f7b3a537-fad1-4ef8-a2fe-88d89aca1f50",
+  "user_id": "10004",
+  "task_type": "svm_regression",
+  "params": {
+    "data_source": "http://47.99.180.80/file/uploads/H-AF_2.xls",
+    "target_dimension": 1,
+    "kernel": null,
+    "optimize_hyperparameters": true,
+    "n_trials": 50,
+    "cv_folds": 5,
+    "scoring_metric": "r2",
+    "validate_data": true,
+    "save_model": true,
+    "apply_preprocessing": true,
+    "scaling_method": "standard",
+    "models_dir": "trained_models/10004"
+  },
+  "status": "failed",
+  "created_at": "2025-09-22T01:32:18.703158",
+  "started_at": "2025-09-22T01:32:18.704722",
+  "completed_at": "2025-09-22T01:32:18.705608",
+  "progress": 0.0,
+  "error_message": "TrainingEngine._train_svm_model() got an unexpected keyword argument 'target_dimension'",
+  "result": null
+}

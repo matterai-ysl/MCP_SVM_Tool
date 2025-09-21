@@ -1,0 +1,26 @@
+{
+  "task_id": "4fea8b10-8da4-4d63-9752-fea162fab628",
+  "user_id": "10004",
+  "task_type": "svm_regression",
+  "params": {
+    "data_source": "http://47.99.180.80/file/uploads/H-AF_3.xls",
+    "target_column": "H-AF",
+    "kernel": null,
+    "optimize_hyperparameters": true,
+    "n_trials": 50,
+    "cv_folds": 5,
+    "scoring_metric": "r2",
+    "validate_data": true,
+    "save_model": true,
+    "apply_preprocessing": true,
+    "scaling_method": "standard",
+    "models_dir": "trained_models/10004"
+  },
+  "status": "running",
+  "created_at": "2025-09-22T02:14:17.886923",
+  "started_at": "2025-09-22T02:14:17.887767",
+  "completed_at": null,
+  "progress": 0.0,
+  "error_message": null,
+  "result": null
+}

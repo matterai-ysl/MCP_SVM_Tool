@@ -1,0 +1,26 @@
+{
+  "task_id": "b21cf29a-6b5e-4a8a-acc3-d4f215c15055",
+  "user_id": "test_user",
+  "task_type": "svm_classification",
+  "params": {
+    "data_source": "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv",
+    "target_column": "species",
+    "kernel": "linear",
+    "optimize_hyperparameters": false,
+    "n_trials": 1,
+    "cv_folds": 2,
+    "scoring_metric": null,
+    "validate_data": false,
+    "save_model": true,
+    "apply_preprocessing": true,
+    "scaling_method": "standard",
+    "models_dir": "trained_models/test_user"
+  },
+  "status": "running",
+  "created_at": "2025-09-22T01:51:01.749239",
+  "started_at": "2025-09-22T01:51:01.749582",
+  "completed_at": null,
+  "progress": 0.0,
+  "error_message": null,
+  "result": null
+}
