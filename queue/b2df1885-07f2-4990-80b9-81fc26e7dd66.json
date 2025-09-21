@@ -1,0 +1,74 @@
+{
+  "task_id": "b2df1885-07f2-4990-80b9-81fc26e7dd66",
+  "user_id": "10004",
+  "task_type": "svm_regression",
+  "params": {
+    "data_source": "http://47.99.180.80/file/uploads/H-AF_3.xls",
+    "target_column": "H-AF",
+    "kernel": null,
+    "optimize_hyperparameters": true,
+    "n_trials": 50,
+    "cv_folds": 5,
+    "scoring_metric": "r2",
+    "validate_data": true,
+    "save_model": true,
+    "apply_preprocessing": true,
+    "scaling_method": "standard",
+    "models_dir": "trained_models/10004"
+  },
+  "status": "completed",
+  "created_at": "2025-09-22T02:19:46.542615",
+  "started_at": "2025-09-22T02:19:46.543398",
+  "completed_at": "2025-09-22T02:19:52.694872",
+  "progress": 100.0,
+  "error_message": null,
+  "result": {
+    "model_id": "b412fe07-c613-4158-b093-bd5882820543",
+    "algorithm": "SVM_Regression",
+    "task_type": "regression",
+    "kernel": null,
+    "training_time_seconds": 6.146413,
+    "data_shape": {
+      "n_samples": 53,
+      "n_features": 4
+    },
+    "feature_names": [
+      "SiO2",
+      "CeO2",
+      "Lignin",
+      "2-VN"
+    ],
+    "target_names": "H-AF",
+    "best_hyperparameters": {
+      "kernel": "poly",
+      "C": 170.4971037435674,
+      "degree": 4,
+      "coef0": 1.6780479417526968,
+      "gamma": "scale",
+      "epsilon": 0.20692892002735347
+    },
+    "feature_importance": {
+      "permutation": {
+        "SiO2": {
+          "importance_mean": 1.3662384195649573,
+          "importance_std": 0.18653432558515592
+        },
+        "CeO2": {
+          "importance_mean": 0.13061585556106364,
+          "importance_std": 0.0233902592546752
+        },
+        "Lignin": {
+          "importance_mean": 0.0967114551219975,
+          "importance_std": 0.01211512354686683
+        },
+        "2-VN": {
+          "importance_mean": 0.1063821395582325,
+          "importance_std": 0.02611394360466594
+        }
+      }
+    },
+    "performance_summary": "Regression model achieved R² of 0.949±0.007 with MAE of 0.172 (5-fold CV)",
+    "trained_report_summary_html_path": "You can find the html trained report summary in http://localhost:8120/static/10004/b412fe07-c613-4158-b093-bd5882820543/training_report.html",
+    "trained_details": "All detailed training data are saved in http://localhost:8120/download/file/10004/archives/b412fe07-c613-4158-b093-bd5882820543_20250922_021952.zip,\n                which can be downloaded by users for reproducibility and academic research reference."
+  }
+}
