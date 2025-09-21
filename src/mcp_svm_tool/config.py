@@ -1,4 +1,4 @@
-BASE_URL = "https://www.matterai.cn/svm
+BASE_URL = https://www.matterai.cn/svm
 DOWNLOAD_URL = "./trained_models"
 MCP_PORT = 8050
 from pathlib import Path
