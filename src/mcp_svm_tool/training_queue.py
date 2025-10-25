@@ -108,7 +108,7 @@ class TrainingQueueManager:
         logger.info("Training queue manager stopped")
     
     async def submit_task(self, task_type: str, params: Dict[str, Any], 
-                         user_id: Optional[str] = None) -> str:
+                         user_id: Optional[str] = None, task_id: str = None) -> str: # type: ignore
         """
         Submit a new training task to the queue.
         
@@ -120,7 +120,7 @@ class TrainingQueueManager:
         Returns:
             Task ID for tracking
         """
-        task_id = str(uuid.uuid4())
+        task_id = str(uuid.uuid4()) if task_id is None else task_id
         
         task = TrainingTask(
             task_id=task_id,
