@@ -8,7 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
-trained_models/
+.trained_models/
+.reports/
 # Logs
 logs
 *.log
@@ -34,3 +35,10 @@ node_modules/
 # Task files
 # tasks.json
 # tasks/ 
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/

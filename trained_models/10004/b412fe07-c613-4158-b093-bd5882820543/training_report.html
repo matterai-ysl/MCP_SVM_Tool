@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training Report - b412fe07-c613-4158-b093-bd5882820543</title>
+    <meta charset="UTF-8">
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background-color: white; 
+            border-radius: 10px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            overflow: hidden; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); 
+            color: white; 
+            padding: 30px; 
+            text-align: center; 
+        }
+        .header h1 { margin: 0; font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .header p { margin: 5px 0 0 0; opacity: 0.9; font-size: 1.2em; }
+        .section { 
+            margin: 0; 
+            padding: 25px; 
+            border-bottom: 1px solid #eee; 
+        }
+        .section:last-child { border-bottom: none; }
+        .section h2 { 
+            color: #2a5298; 
+            border-bottom: 2px solid #e9ecef; 
+            padding-bottom: 10px; 
+            margin-top: 0; 
+            font-size: 1.8em;
+        }
+        .metric-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px; 
+            margin: 20px 0; 
+        }
+        .metric { 
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); 
+            padding: 15px; 
+            border-radius: 8px; 
+            border-left: 4px solid #2a5298; 
+            transition: transform 0.2s ease;
+        }
+        .metric:hover { transform: translateY(-2px); }
+        .metric-label { font-weight: bold; color: #495057; margin-bottom: 5px; }
+        .metric-value { font-size: 1.2em; color: #2a5298; font-weight: bold; }
+        /* Table Container - Add horizontal scrolling for wide tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            min-width: 600px; /* Ensure minimum width for readability */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td { 
+            border: 1px solid #dee2e6; 
+            padding: 12px; 
+            text-align: left; 
+            vertical-align: top; /* Align content to top for long text */
+        }
+        th { 
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%); 
+            font-weight: bold; 
+            color: white; 
+            white-space: nowrap; /* Prevent header text wrapping */
+        }
+        td {
+            word-wrap: break-word; /* Allow long words to break */
+            word-break: break-word; /* Handle very long strings */
+            max-width: 300px; /* Limit cell width for readability */
+        }
+        /* Special handling for Details column */
+        .details-cell {
+            max-width: 400px;
+            max-height: 150px;
+            overflow-y: auto;
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+        /* Scrollbar styling for details cells */
+        .details-cell::-webkit-scrollbar {
+            width: 6px;
+        }
+        .details-cell::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        .details-cell::-webkit-scrollbar-thumb {
+            background: #2a5298;
+            border-radius: 3px;
+        }
+        .details-cell::-webkit-scrollbar-thumb:hover {
+            background: #1e3c72;
+        }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e3f2fd; }
+        .visualization-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+            gap: 20px; 
+            margin: 20px 0; 
+        }
+        .visualization-item { 
+            border: 1px solid #dee2e6; 
+            border-radius: 8px; 
+            padding: 15px; 
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .visualization-item img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 4px; 
+            margin-bottom: 10px; 
+        }
+        .visualization-description { 
+            margin: 0; 
+            font-size: 0.9em; 
+            color: #6c757d; 
+            text-align: center; 
+        }
+        .status-badge { 
+            display: inline-block; 
+            padding: 4px 8px; 
+            border-radius: 12px; 
+            font-size: 0.8em; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            background-color: #d4edda; 
+            color: #155724; 
+        }
+        .recommendation { 
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
+            border-left: 4px solid #2196F3; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 4px; 
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        /* Scrollable content areas for long lists */
+        .scrollable-content {
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            background: #f8f9fa;
+        }
+        .scrollable-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #2a5298;
+            border-radius: 4px;
+        }
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #1e3c72;
+        }
+        /* Long text content areas */
+        .expandable-text {
+            max-height: 100px;
+            overflow-y: auto;
+            padding: 8px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        .expandable-text::-webkit-scrollbar {
+            width: 6px;
+        }
+        .expandable-text::-webkit-scrollbar-track {
+            background: rgba(241,241,241,0.5);
+            border-radius: 3px;
+        }
+        .expandable-text::-webkit-scrollbar-thumb {
+            background: rgba(42,82,152,0.7);
+            border-radius: 3px;
+        }
+        .footer {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 SVM Training Report</h1>
+            <p>Comprehensive Analysis of Model Training Process</p>
+        </div>
+        
+        
+        <div class="section">
+            <h2>📋 Training Summary</h2>
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="metric-label">Model Name</div>
+                    <div class="metric-value">b412fe07-c613-4158-b093-bd5882820543</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Task Type</div>
+                    <div class="metric-value">Regression</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Training Time</div>
+                    <div class="metric-value">5.64s</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Status</div>
+                    <div class="metric-value"><span class="status-badge">Completed</span></div>
+                </div>
+            </div>
+            <div class="metric-grid">
+                    <div class="metric">
+                        <div class="metric-label">MAE (lower is better)</div>
+                        <div class="metric-value">0.172 ± 0.019</div>
+                    </div>
+                    
+                    <div class="metric">
+                        <div class="metric-label">MSE (lower is better)</div>
+                        <div class="metric-value">0.045 ± 0.012</div>
+                    </div>
+                    
+                    <div class="metric">
+                        <div class="metric-label">R² (higher is better)</div>
+                        <div class="metric-value">0.949 ± 0.007</div>
+                    </div>
+                    </div>
+        </div>
+        
+        
+        
+        <div class="section">
+            <h2>📊 Dataset Overview</h2>
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="metric-label">Number of Samples</div>
+                    <div class="metric-value">53</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Number of Features</div>
+                    <div class="metric-value">4</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Task Type</div>
+                    <div class="metric-value">Regression</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Target Variable</div>
+                    <div class="metric-value">H-AF</div>
+                </div>
+            </div>
+            <div style="margin-top: 15px;">
+                <h3>Features (4 total):</h3>
+                <div class="expandable-text" style="background: #f8f9fa; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 0.9em;">
+                    SiO2, CeO2, Lignin, 2-VN
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="section">
+            <h2>🎯 Hyperparameter Optimization</h2>
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="metric-label">Best Score (R² - higher is better)</div>
+                    <div class="metric-value">0.9494</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Number of Trials</div>
+                    <div class="metric-value">0</div>
+                </div>
+            </div>
+            <h3>Best Parameters:</h3><div class="metric-grid">
+                <div class="metric">
+                    <div class="metric-label">Kernel</div>
+                    <div class="metric-value">poly</div>
+                </div>
+                
+                <div class="metric">
+                    <div class="metric-label">C</div>
+                    <div class="metric-value">170.4971037435674</div>
+                </div>
+                
+                <div class="metric">
+                    <div class="metric-label">Degree</div>
+                    <div class="metric-value">4</div>
+                </div>
+                
+                <div class="metric">
+                    <div class="metric-label">Coef0</div>
+                    <div class="metric-value">1.6780479417526968</div>
+                </div>
+                
+                <div class="metric">
+                    <div class="metric-label">Gamma</div>
+                    <div class="metric-value">scale</div>
+                </div>
+                
+                <div class="metric">
+                    <div class="metric-label">Epsilon</div>
+                    <div class="metric-value">0.20692892002735347</div>
+                </div>
+                </div>
+        </div>
+        
+        
+        <div class="section">
+            <h2>🔄 Cross-Validation Results</h2>
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="metric-label">Number of Folds</div>
+                    <div class="metric-value">5</div>
+                </div>
+            </div>
+            <div class="metric-grid">
+                    <div class="metric">
+                        <div class="metric-label">MAE (lower is better)</div>
+                        <div class="metric-value">0.172 ± 0.019</div>
+                    </div>
+                    
+                    <div class="metric">
+                        <div class="metric-label">MSE (lower is better)</div>
+                        <div class="metric-value">0.045 ± 0.012</div>
+                    </div>
+                    
+                    <div class="metric">
+                        <div class="metric-label">R² (higher is better)</div>
+                        <div class="metric-value">0.949 ± 0.007</div>
+                    </div>
+                    </div>
+        </div>
+        
+        <div class="section"><h2>📊 Cross-Validation Visualizations</h2><div class="visualization-grid">
+                <div class="visualization-item">
+                    <img src="cross_validation_data/b412fe07-c613-4158-b093-bd5882820543_cv_scatter_plot.png" alt="B412Fe07-C613-4158-B093-Bd5882820543 Cv Scatter Plot">
+                    <p class="visualization-description"><strong>B412Fe07-C613-4158-B093-Bd5882820543 Cv Scatter Plot</strong><br>Cross-validation visualization: b412fe07-c613-4158-b093-bd5882820543_cv_scatter_plot</p>
+                </div>
+                </div></div>
+        
+        
+        
+        
+        <div class="section">
+            <h2>💡 Recommendations & Next Steps</h2>
+            
+            <div class="recommendation">
+                <strong>1.</strong> 🎯 Excellent regression performance (R² > 0.90)! Consider this model ready for production.
+            </div>
+            
+            <div class="recommendation">
+                <strong>2.</strong> 🔄 Consider running more optimization trials for better hyperparameter exploration.
+            </div>
+            
+        </div>
+        
+        
+        <div class="footer">
+            <p>Report generated on 2025-09-22 at 02:19:52</p>
+                            <p>MCP SVM Tool - Training Analysis Report v1.0.0</p>
+        </div>
+    </div>
+</body>
+</html>

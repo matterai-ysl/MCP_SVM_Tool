@@ -1,0 +1,2883 @@
+{
+  "best_params": {
+    "kernel": "poly",
+    "C": 170.4971037435674,
+    "degree": 4,
+    "coef0": 1.6780479417526968,
+    "gamma": "scale",
+    "epsilon": 0.20692892002735347
+  },
+  "best_score": 0.9494406971787323,
+  "best_kernel": "poly",
+  "task_type": "regression",
+  "sampler_type": "TPE",
+  "scoring_metric": "r2",
+  "kernel_results": {
+    "linear": {
+      "best_params": {
+        "kernel": "linear",
+        "C": 1.7265483122926126,
+        "epsilon": 0.4230490610773862
+      },
+      "best_score": 0.8754448567901936,
+      "optimization_results": {
+        "best_params": {
+          "kernel": "linear",
+          "C": 1.7265483122926126,
+          "epsilon": 0.4230490610773862
+        },
+        "best_score": 0.8754448567901936,
+        "best_trial_number": 47,
+        "n_trials": 50,
+        "n_completed_trials": 50,
+        "task_type": "regression",
+        "sampler_type": "TPE",
+        "optimization_history": [
+          {
+            "trial_number": 0,
+            "value": 0.7642329783864398,
+            "params": {
+              "C": 0.17670169402947947,
+              "epsilon": 0.6351221010640693
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.015116",
+            "duration": 0.004547
+          },
+          {
+            "trial_number": 1,
+            "value": 0.7954908361993824,
+            "params": {
+              "C": 24.658329458549094,
+              "epsilon": 0.024810409748678108
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.019971",
+            "duration": 0.010089
+          },
+          {
+            "trial_number": 2,
+            "value": 0.42845833739142386,
+            "params": {
+              "C": 0.008632008168602545,
+              "epsilon": 0.0004207053950287938
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.030335",
+            "duration": 0.002114
+          },
+          {
+            "trial_number": 3,
+            "value": 0.012719393053282246,
+            "params": {
+              "C": 0.002231010801867922,
+              "epsilon": 0.29154431891537524
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.032629",
+            "duration": 0.001869
+          },
+          {
+            "trial_number": 4,
+            "value": 0.8131339881648707,
+            "params": {
+              "C": 4.0428727350273315,
+              "epsilon": 0.06796578090758154
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.034773",
+            "duration": 0.003639
+          },
+          {
+            "trial_number": 5,
+            "value": -0.05052023028141661,
+            "params": {
+              "C": 0.0013289448722869186,
+              "epsilon": 0.7579479953347994
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.038656",
+            "duration": 0.00279
+          },
+          {
+            "trial_number": 6,
+            "value": 0.7904664147871159,
+            "params": {
+              "C": 98.77700294007911,
+              "epsilon": 0.0007068974950624604
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.041697",
+            "duration": 0.03271
+          },
+          {
+            "trial_number": 7,
+            "value": 0.5717968879826056,
+            "params": {
+              "C": 0.012329623163659839,
+              "epsilon": 0.0005415244119402539
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.074657",
+            "duration": 0.001986
+          },
+          {
+            "trial_number": 8,
+            "value": 0.8295964251599409,
+            "params": {
+              "C": 0.06690421166498801,
+              "epsilon": 0.012561043700013555
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.076812",
+            "duration": 0.001904
+          },
+          {
+            "trial_number": 9,
+            "value": 0.8104398466303138,
+            "params": {
+              "C": 0.39054412752107914,
+              "epsilon": 0.0014618962793704966
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.078880",
+            "duration": 0.00236
+          },
+          {
+            "trial_number": 10,
+            "value": 0.8262340050423459,
+            "params": {
+              "C": 0.07380265896572932,
+              "epsilon": 0.003662312545606235
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.081454",
+            "duration": 0.003668
+          },
+          {
+            "trial_number": 11,
+            "value": 0.8266871982346192,
+            "params": {
+              "C": 0.06586744033069315,
+              "epsilon": 0.005737691543280197
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.085307",
+            "duration": 0.002932
+          },
+          {
+            "trial_number": 12,
+            "value": 0.7936565829756094,
+            "params": {
+              "C": 2.475588998870288,
+              "epsilon": 0.00955394789697147
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.088438",
+            "duration": 0.003925
+          },
+          {
+            "trial_number": 13,
+            "value": 0.7804388404602408,
+            "params": {
+              "C": 0.035067313183433195,
+              "epsilon": 0.05686906248303912
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.092582",
+            "duration": 0.00278
+          },
+          {
+            "trial_number": 14,
+            "value": 0.8005865300774178,
+            "params": {
+              "C": 0.9286793923304076,
+              "epsilon": 0.00011290337641647077
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.095553",
+            "duration": 0.003291
+          },
+          {
+            "trial_number": 15,
+            "value": 0.7900042487868808,
+            "params": {
+              "C": 638.5848430580046,
+              "epsilon": 0.006677676061863546
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.099122",
+            "duration": 0.266546
+          },
+          {
+            "trial_number": 16,
+            "value": 0.7985642702619492,
+            "params": {
+              "C": 0.037805922057241405,
+              "epsilon": 0.027594931247927022
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.365979",
+            "duration": 0.002866
+          },
+          {
+            "trial_number": 17,
+            "value": 0.8060439166139339,
+            "params": {
+              "C": 0.22914924571623904,
+              "epsilon": 0.0018756206282287391
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.369032",
+            "duration": 0.003112
+          },
+          {
+            "trial_number": 18,
+            "value": 0.4479421429903761,
+            "params": {
+              "C": 0.00912689570851501,
+              "epsilon": 0.11762617934974447
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.372393",
+            "duration": 0.002866
+          },
+          {
+            "trial_number": 19,
+            "value": 0.795967124930162,
+            "params": {
+              "C": 6.168708754337113,
+              "epsilon": 0.020900511909884917
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.375456",
+            "duration": 0.005017
+          },
+          {
+            "trial_number": 20,
+            "value": 0.8084238597212016,
+            "params": {
+              "C": 0.759104473459618,
+              "epsilon": 0.0027025958563271224
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.380666",
+            "duration": 0.003229
+          },
+          {
+            "trial_number": 21,
+            "value": 0.816240011702494,
+            "params": {
+              "C": 0.09854444934959487,
+              "epsilon": 0.005393764090874056
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.384110",
+            "duration": 0.002971
+          },
+          {
+            "trial_number": 22,
+            "value": 0.7529900500257197,
+            "params": {
+              "C": 0.03041976705242603,
+              "epsilon": 0.004481839128894395
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.387268",
+            "duration": 0.002931
+          },
+          {
+            "trial_number": 23,
+            "value": 0.8173373829074289,
+            "params": {
+              "C": 0.09004510125384423,
+              "epsilon": 0.01237757504006268
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.390426",
+            "duration": 0.002721
+          },
+          {
+            "trial_number": 24,
+            "value": 0.12645536201836005,
+            "params": {
+              "C": 0.002956475672932671,
+              "epsilon": 0.0031229330380703607
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.393337",
+            "duration": 0.002486
+          },
+          {
+            "trial_number": 25,
+            "value": 0.8263046253919377,
+            "params": {
+              "C": 0.049398912511857934,
+              "epsilon": 0.0012196622243652669
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.395988",
+            "duration": 0.002656
+          },
+          {
+            "trial_number": 26,
+            "value": 0.6262262139687408,
+            "params": {
+              "C": 0.014885006967679202,
+              "epsilon": 0.0011821783798808122
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.398839",
+            "duration": 0.002537
+          },
+          {
+            "trial_number": 27,
+            "value": 0.25163972306382776,
+            "params": {
+              "C": 0.004948948017398012,
+              "epsilon": 0.00022508946203004117
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.401548",
+            "duration": 0.002428
+          },
+          {
+            "trial_number": 28,
+            "value": 0.8044039768332807,
+            "params": {
+              "C": 0.5239182548903395,
+              "epsilon": 0.012542202366440705
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.404255",
+            "duration": 0.003104
+          },
+          {
+            "trial_number": 29,
+            "value": 0.8034799978640734,
+            "params": {
+              "C": 0.1713635775854518,
+              "epsilon": 0.0009434666174656926
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.407594",
+            "duration": 0.00278
+          },
+          {
+            "trial_number": 30,
+            "value": 0.7224394966574972,
+            "params": {
+              "C": 0.02683311736701485,
+              "epsilon": 0.00028384109196930745
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.410576",
+            "duration": 0.002617
+          },
+          {
+            "trial_number": 31,
+            "value": 0.8230715333067693,
+            "params": {
+              "C": 0.0841023923388387,
+              "epsilon": 0.002872548374007522
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.413366",
+            "duration": 0.002688
+          },
+          {
+            "trial_number": 32,
+            "value": 0.82827668296915,
+            "params": {
+              "C": 0.07056002114971019,
+              "epsilon": 0.019683251553637853
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.416228",
+            "duration": 0.002596
+          },
+          {
+            "trial_number": 33,
+            "value": 0.8111992899922317,
+            "params": {
+              "C": 0.2544055925304804,
+              "epsilon": 0.020464676521065248
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.418994",
+            "duration": 0.002911
+          },
+          {
+            "trial_number": 34,
+            "value": 0.8091798150447023,
+            "params": {
+              "C": 1.6052073490748255,
+              "epsilon": 0.0449306648845362
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.422150",
+            "duration": 0.003284
+          },
+          {
+            "trial_number": 35,
+            "value": 0.20355407960035882,
+            "params": {
+              "C": 0.004818405394751352,
+              "epsilon": 0.2829497323191617
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.425626",
+            "duration": 0.002646
+          },
+          {
+            "trial_number": 36,
+            "value": 0.7914434674352611,
+            "params": {
+              "C": 10.550446890007112,
+              "epsilon": 0.008674443551447154
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.428452",
+            "duration": 0.006058
+          },
+          {
+            "trial_number": 37,
+            "value": -0.023264118229626284,
+            "params": {
+              "C": 0.0011014484668021192,
+              "epsilon": 0.033280777079967135
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.434688",
+            "duration": 0.002512
+          },
+          {
+            "trial_number": 38,
+            "value": 0.655745934666669,
+            "params": {
+              "C": 0.018101655805486963,
+              "epsilon": 0.157092247588146
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.437370",
+            "duration": 0.002814
+          },
+          {
+            "trial_number": 39,
+            "value": 0.8283872747268202,
+            "params": {
+              "C": 0.055935701351810925,
+              "epsilon": 0.01782502766317874
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.440520",
+            "duration": 0.002708
+          },
+          {
+            "trial_number": 40,
+            "value": 0.8464505899285986,
+            "params": {
+              "C": 0.16066330877473223,
+              "epsilon": 0.10139068837461754
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.443407",
+            "duration": 0.002657
+          },
+          {
+            "trial_number": 41,
+            "value": 0.849906356786256,
+            "params": {
+              "C": 0.1413952848734198,
+              "epsilon": 0.1269569883598526
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.446231",
+            "duration": 0.002564
+          },
+          {
+            "trial_number": 42,
+            "value": 0.8454674459405386,
+            "params": {
+              "C": 0.20422496693874145,
+              "epsilon": 0.09626779805375492
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.448953",
+            "duration": 0.002736
+          },
+          {
+            "trial_number": 43,
+            "value": 0.8452738907806744,
+            "params": {
+              "C": 0.1705554751486436,
+              "epsilon": 0.09474970063231203
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.451867",
+            "duration": 0.003344
+          },
+          {
+            "trial_number": 44,
+            "value": 0.8608657106795568,
+            "params": {
+              "C": 0.38146205771227737,
+              "epsilon": 0.46285730671801356
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.455426",
+            "duration": 0.00294
+          },
+          {
+            "trial_number": 45,
+            "value": 0.633849253752814,
+            "params": {
+              "C": 0.4028115697630866,
+              "epsilon": 0.9486851813744572
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.458551",
+            "duration": 0.002413
+          },
+          {
+            "trial_number": 46,
+            "value": 0.867742982807048,
+            "params": {
+              "C": 1.490216244321638,
+              "epsilon": 0.4113315046811205
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.461132",
+            "duration": 0.002918
+          },
+          {
+            "trial_number": 47,
+            "value": 0.8754448567901936,
+            "params": {
+              "C": 1.7265483122926126,
+              "epsilon": 0.4230490610773862
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.464237",
+            "duration": 0.002729
+          },
+          {
+            "trial_number": 48,
+            "value": 0.8689996316277494,
+            "params": {
+              "C": 2.0641010355282794,
+              "epsilon": 0.5076890367296096
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.467166",
+            "duration": 0.002762
+          },
+          {
+            "trial_number": 49,
+            "value": 0.8715323429449506,
+            "params": {
+              "C": 22.555777308120692,
+              "epsilon": 0.4348996296005519
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.470106",
+            "duration": 0.004783
+          }
+        ],
+        "best_cv_scores": [
+          0.9044658507246343,
+          0.8999691478850003,
+          0.9176898471065028,
+          0.7700282469695926,
+          0.8850711912652378
+        ],
+        "best_cv_std": 0.053728253444468056
+      }
+    },
+    "rbf": {
+      "best_params": {
+        "kernel": "rbf",
+        "C": 90.34022115048741,
+        "gamma": 0.016585319738480906,
+        "epsilon": 0.009000785410720738
+      },
+      "best_score": 0.9356154224025779,
+      "optimization_results": {
+        "best_params": {
+          "kernel": "rbf",
+          "C": 90.34022115048741,
+          "gamma": 0.016585319738480906,
+          "epsilon": 0.009000785410720738
+        },
+        "best_score": 0.9356154224025779,
+        "best_trial_number": 43,
+        "n_trials": 50,
+        "n_completed_trials": 50,
+        "task_type": "regression",
+        "sampler_type": "TPE",
+        "optimization_history": [
+          {
+            "trial_number": 0,
+            "value": 0.6194620947475667,
+            "params": {
+              "C": 4.68940096353769,
+              "gamma_type": "manual",
+              "gamma_value": 0.0015782327810795573,
+              "epsilon": 0.006672367170464205
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.483636",
+            "duration": 0.002266
+          },
+          {
+            "trial_number": 1,
+            "value": 0.9076410397733893,
+            "params": {
+              "C": 51.41096648805749,
+              "gamma_type": "manual",
+              "gamma_value": 0.035849855803404725,
+              "epsilon": 0.00015339162591163628
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.486259",
+            "duration": 0.003929
+          },
+          {
+            "trial_number": 2,
+            "value": 0.8777731120517547,
+            "params": {
+              "C": 4.418441521199721,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.17123375973163973
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.490458",
+            "duration": 0.00231
+          },
+          {
+            "trial_number": 3,
+            "value": -0.05806791717834392,
+            "params": {
+              "C": 0.06724850206557247,
+              "gamma_type": "manual",
+              "gamma_value": 0.004374364439939076,
+              "epsilon": 0.00030771802712506853
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.492973",
+            "duration": 0.001886
+          },
+          {
+            "trial_number": 4,
+            "value": -0.06118237352191145,
+            "params": {
+              "C": 0.9355380606452183,
+              "gamma_type": "manual",
+              "gamma_value": 0.0003570095960030948,
+              "epsilon": 0.04467752817973904
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.495031",
+            "duration": 0.001859
+          },
+          {
+            "trial_number": 5,
+            "value": -0.12598623712302115,
+            "params": {
+              "C": 0.07417652034871827,
+              "gamma_type": "manual",
+              "gamma_value": 0.0001285661779146793,
+              "epsilon": 0.7556810141274423
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.497057",
+            "duration": 0.001814
+          },
+          {
+            "trial_number": 6,
+            "value": 0.8004987447228965,
+            "params": {
+              "C": 44.75040191350906,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.00022592797420156976
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.499039",
+            "duration": 0.003248
+          },
+          {
+            "trial_number": 7,
+            "value": -0.10190904695200027,
+            "params": {
+              "C": 0.014993298055091557,
+              "gamma_type": "manual",
+              "gamma_value": 0.002148145718198267,
+              "epsilon": 0.0012172958098369967
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.502469",
+            "duration": 0.001989
+          },
+          {
+            "trial_number": 8,
+            "value": 0.880638306692371,
+            "params": {
+              "C": 93.84800715909525,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.16172900811143134
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.504675",
+            "duration": 0.002188
+          },
+          {
+            "trial_number": 9,
+            "value": -0.11330904594331825,
+            "params": {
+              "C": 0.0028009403633756772,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.18274508859816008
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.507067",
+            "duration": 0.001906
+          },
+          {
+            "trial_number": 10,
+            "value": 0.47048759417005764,
+            "params": {
+              "C": 655.1395418988218,
+              "gamma_type": "manual",
+              "gamma_value": 2.4535199910024463,
+              "epsilon": 0.004016658883118541
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.509210",
+            "duration": 0.003169
+          },
+          {
+            "trial_number": 11,
+            "value": 0.8388401685977174,
+            "params": {
+              "C": 886.4682325710681,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.03392513394576353
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.512553",
+            "duration": 0.003922
+          },
+          {
+            "trial_number": 12,
+            "value": 0.7980292816590877,
+            "params": {
+              "C": 55.98498421051574,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.00010233150170925841
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.516688",
+            "duration": 0.004444
+          },
+          {
+            "trial_number": 13,
+            "value": 0.8014075134480987,
+            "params": {
+              "C": 59.89309871765423,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.0018185162380652045
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.521466",
+            "duration": 0.004406
+          },
+          {
+            "trial_number": 14,
+            "value": 0.8109679035914794,
+            "params": {
+              "C": 157.2111538558081,
+              "gamma_type": "manual",
+              "gamma_value": 0.5324652664569173,
+              "epsilon": 0.022841780552473313
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.526082",
+            "duration": 0.003219
+          },
+          {
+            "trial_number": 15,
+            "value": 0.5824298775242001,
+            "params": {
+              "C": 6.9310176898065325,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.8668706346392596
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.529504",
+            "duration": 0.002743
+          },
+          {
+            "trial_number": 16,
+            "value": 0.7991161522115477,
+            "params": {
+              "C": 0.6214819772751933,
+              "gamma_type": "manual",
+              "gamma_value": 0.08552958423025202,
+              "epsilon": 0.13898753749315815
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.532455",
+            "duration": 0.003164
+          },
+          {
+            "trial_number": 17,
+            "value": 0.852355022551839,
+            "params": {
+              "C": 13.739583011139764,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.0007957220134056693
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.535813",
+            "duration": 0.004175
+          },
+          {
+            "trial_number": 18,
+            "value": 0.82073423196712,
+            "params": {
+              "C": 151.23317194702955,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.014693565956222815
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.540277",
+            "duration": 0.003956
+          },
+          {
+            "trial_number": 19,
+            "value": 0.8593503417742197,
+            "params": {
+              "C": 300.7395928443915,
+              "gamma_type": "manual",
+              "gamma_value": 0.06969165855592023,
+              "epsilon": 0.06312365207488471
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.544472",
+            "duration": 0.008085
+          },
+          {
+            "trial_number": 20,
+            "value": 0.19405910186815442,
+            "params": {
+              "C": 13.231647722040448,
+              "gamma_type": "manual",
+              "gamma_value": 9.36729661507007,
+              "epsilon": 0.0038947368676287533
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.552744",
+            "duration": 0.003146
+          },
+          {
+            "trial_number": 21,
+            "value": 0.840152156813644,
+            "params": {
+              "C": 3.67928082784862,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.2958129870747728
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.556117",
+            "duration": 0.003077
+          },
+          {
+            "trial_number": 22,
+            "value": 0.892392545911979,
+            "params": {
+              "C": 2.0591514536885147,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.10129175739531251
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.559400",
+            "duration": 0.00295
+          },
+          {
+            "trial_number": 23,
+            "value": 0.6255671530930369,
+            "params": {
+              "C": 0.28915931616144414,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.09424867212814321
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.562533",
+            "duration": 0.002857
+          },
+          {
+            "trial_number": 24,
+            "value": 0.7594700605631729,
+            "params": {
+              "C": 23.98772400833184,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.5017713621336573
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.565598",
+            "duration": 0.002714
+          },
+          {
+            "trial_number": 25,
+            "value": 0.8069434476965889,
+            "params": {
+              "C": 1.481214139276532,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.3684323662816247
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.568499",
+            "duration": 0.002905
+          },
+          {
+            "trial_number": 26,
+            "value": 0.8160985013186945,
+            "params": {
+              "C": 149.379255558368,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.011121737476875837
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.571623",
+            "duration": 0.003958
+          },
+          {
+            "trial_number": 27,
+            "value": 0.620342196514052,
+            "params": {
+              "C": 0.2705959812553504,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.07915899825790579
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.575854",
+            "duration": 0.002857
+          },
+          {
+            "trial_number": 28,
+            "value": -0.10381765114701487,
+            "params": {
+              "C": 1.9805321791897936,
+              "gamma_type": "manual",
+              "gamma_value": 2.51385022183847e-05,
+              "epsilon": 0.026481722682584623
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.578900",
+            "duration": 0.003162
+          },
+          {
+            "trial_number": 29,
+            "value": 0.9123176205631459,
+            "params": {
+              "C": 34.37549156574652,
+              "gamma_type": "manual",
+              "gamma_value": 0.03939515533102652,
+              "epsilon": 0.005361519687359381
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.582245",
+            "duration": 0.004199
+          },
+          {
+            "trial_number": 30,
+            "value": 0.9268804715417384,
+            "params": {
+              "C": 14.016390896678924,
+              "gamma_type": "manual",
+              "gamma_value": 0.0339398268675231,
+              "epsilon": 0.005250546808660416
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.586759",
+            "duration": 0.003758
+          },
+          {
+            "trial_number": 31,
+            "value": 0.9130693745858445,
+            "params": {
+              "C": 21.94673510750155,
+              "gamma_type": "manual",
+              "gamma_value": 0.05339483460808205,
+              "epsilon": 0.006036289668775629
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.590765",
+            "duration": 0.004268
+          },
+          {
+            "trial_number": 32,
+            "value": 0.9231163946444347,
+            "params": {
+              "C": 20.546202911539524,
+              "gamma_type": "manual",
+              "gamma_value": 0.04321420868095871,
+              "epsilon": 0.004625077031149771
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.595246",
+            "duration": 0.004087
+          },
+          {
+            "trial_number": 33,
+            "value": 0.904566197803492,
+            "params": {
+              "C": 12.989665926592336,
+              "gamma_type": "manual",
+              "gamma_value": 0.02140849416809864,
+              "epsilon": 0.006804084462682175
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.599558",
+            "duration": 0.003455
+          },
+          {
+            "trial_number": 34,
+            "value": 0.8371180467741872,
+            "params": {
+              "C": 20.57776039190365,
+              "gamma_type": "manual",
+              "gamma_value": 0.27068704906757257,
+              "epsilon": 0.002601700763309594
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.603212",
+            "duration": 0.004192
+          },
+          {
+            "trial_number": 35,
+            "value": 0.8221911599775069,
+            "params": {
+              "C": 6.992642213902354,
+              "gamma_type": "manual",
+              "gamma_value": 0.010619184324103007,
+              "epsilon": 0.000668254624074672
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.607677",
+            "duration": 0.003351
+          },
+          {
+            "trial_number": 36,
+            "value": 0.7918988810473471,
+            "params": {
+              "C": 329.2855462865399,
+              "gamma_type": "manual",
+              "gamma_value": 0.2358523124314896,
+              "epsilon": 0.006355943146348717
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.611242",
+            "duration": 0.004535
+          },
+          {
+            "trial_number": 37,
+            "value": 0.919261291791521,
+            "params": {
+              "C": 28.61451574997677,
+              "gamma_type": "manual",
+              "gamma_value": 0.01796859536306233,
+              "epsilon": 0.016209123705590876
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.615972",
+            "duration": 0.00374
+          },
+          {
+            "trial_number": 38,
+            "value": 0.8254583159740919,
+            "params": {
+              "C": 4.203827607666857,
+              "gamma_type": "manual",
+              "gamma_value": 0.013607909249438738,
+              "epsilon": 0.01698558420651981
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.619921",
+            "duration": 0.0034
+          },
+          {
+            "trial_number": 39,
+            "value": 0.8136605970293033,
+            "params": {
+              "C": 8.505893546108883,
+              "gamma_type": "manual",
+              "gamma_value": 0.00549225359183287,
+              "epsilon": 0.002124195044056686
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.623618",
+            "duration": 0.003432
+          },
+          {
+            "trial_number": 40,
+            "value": 0.8638277947627552,
+            "params": {
+              "C": 28.315983590014923,
+              "gamma_type": "manual",
+              "gamma_value": 0.1461364569882641,
+              "epsilon": 0.009516000973790732
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.627249",
+            "duration": 0.004735
+          },
+          {
+            "trial_number": 41,
+            "value": 0.9320926448492178,
+            "params": {
+              "C": 31.182994386391506,
+              "gamma_type": "manual",
+              "gamma_value": 0.03032477876319144,
+              "epsilon": 0.005010724112037176
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.632219",
+            "duration": 0.004044
+          },
+          {
+            "trial_number": 42,
+            "value": 0.8914647774215594,
+            "params": {
+              "C": 65.31323823043108,
+              "gamma_type": "manual",
+              "gamma_value": 0.0446376133600278,
+              "epsilon": 0.00390874001439158
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.636464",
+            "duration": 0.006231
+          },
+          {
+            "trial_number": 43,
+            "value": 0.9356154224025779,
+            "params": {
+              "C": 90.34022115048741,
+              "gamma_type": "manual",
+              "gamma_value": 0.016585319738480906,
+              "epsilon": 0.009000785410720738
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.643072",
+            "duration": 0.004876
+          },
+          {
+            "trial_number": 44,
+            "value": 0.9322265942137962,
+            "params": {
+              "C": 399.6668152754592,
+              "gamma_type": "manual",
+              "gamma_value": 0.011799871347315293,
+              "epsilon": 0.009301268681938736
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.648220",
+            "duration": 0.007344
+          },
+          {
+            "trial_number": 45,
+            "value": 0.9182851318592669,
+            "params": {
+              "C": 398.52384925383194,
+              "gamma_type": "manual",
+              "gamma_value": 0.0055723648855620775,
+              "epsilon": 0.0012966096972524498
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.655819",
+            "duration": 0.005733
+          },
+          {
+            "trial_number": 46,
+            "value": 0.8167701343435129,
+            "params": {
+              "C": 93.84823871173249,
+              "gamma_type": "manual",
+              "gamma_value": 0.0014582795091538003,
+              "epsilon": 0.002897434597213135
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.661766",
+            "duration": 0.003374
+          },
+          {
+            "trial_number": 47,
+            "value": 0.8394213610291427,
+            "params": {
+              "C": 452.96423749524746,
+              "gamma_type": "manual",
+              "gamma_value": 0.42806206674713204,
+              "epsilon": 0.04265754067870221
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.665338",
+            "duration": 0.003696
+          },
+          {
+            "trial_number": 48,
+            "value": 0.849469462248275,
+            "params": {
+              "C": 215.7995105380128,
+              "gamma_type": "manual",
+              "gamma_value": 0.0019452619576771281,
+              "epsilon": 0.00801663282202966
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.669223",
+            "duration": 0.00382
+          },
+          {
+            "trial_number": 49,
+            "value": 0.8186014057285782,
+            "params": {
+              "C": 756.9577301258257,
+              "gamma_type": "manual",
+              "gamma_value": 0.0007077151058615226,
+              "epsilon": 0.0005267579835614499
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.673307",
+            "duration": 0.003965
+          }
+        ],
+        "best_cv_scores": [
+          0.9074801310155725,
+          0.9451086911550126,
+          0.9739639771854699,
+          0.9267484482902714,
+          0.9247758643665629
+        ],
+        "best_cv_std": 0.022576304725523955
+      }
+    },
+    "poly": {
+      "best_params": {
+        "kernel": "poly",
+        "C": 170.4971037435674,
+        "degree": 4,
+        "coef0": 1.6780479417526968,
+        "gamma": "scale",
+        "epsilon": 0.20692892002735347
+      },
+      "best_score": 0.9494406971787323,
+      "optimization_results": {
+        "best_params": {
+          "kernel": "poly",
+          "C": 170.4971037435674,
+          "degree": 4,
+          "coef0": 1.6780479417526968,
+          "gamma": "scale",
+          "epsilon": 0.20692892002735347
+        },
+        "best_score": 0.9494406971787323,
+        "best_trial_number": 49,
+        "n_trials": 50,
+        "n_completed_trials": 50,
+        "task_type": "regression",
+        "sampler_type": "TPE",
+        "optimization_history": [
+          {
+            "trial_number": 0,
+            "value": 0.8508753296443358,
+            "params": {
+              "C": 17.423847570785796,
+              "degree": 4,
+              "coef0": 7.712703466859457,
+              "gamma_type": "manual",
+              "gamma_value": 4.956947932799954e-05,
+              "epsilon": 0.2834090429514773
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.683295",
+            "duration": 0.002472
+          },
+          {
+            "trial_number": 1,
+            "value": 0.7812021324274474,
+            "params": {
+              "C": 5.492736444508447,
+              "degree": 3,
+              "coef0": 0.6355835028602363,
+              "gamma_type": "manual",
+              "gamma_value": 0.2385816677142883,
+              "epsilon": 0.035500125258511595
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.685985",
+            "duration": 0.006259
+          },
+          {
+            "trial_number": 2,
+            "value": 0.9409268099458462,
+            "params": {
+              "C": 210.511805196087,
+              "degree": 3,
+              "coef0": 1.195942459383017,
+              "gamma_type": "manual",
+              "gamma_value": 0.023316490638960616,
+              "epsilon": 0.12130221181165159
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.692499",
+            "duration": 0.013085
+          },
+          {
+            "trial_number": 3,
+            "value": 0.20765470587612972,
+            "params": {
+              "C": 0.9178539435251557,
+              "degree": 4,
+              "coef0": 4.275410183585496,
+              "gamma_type": "manual",
+              "gamma_value": 1.5437434009292235e-05,
+              "epsilon": 0.035127047262708454
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.705859",
+            "duration": 0.002057
+          },
+          {
+            "trial_number": 4,
+            "value": 0.7014988430111194,
+            "params": {
+              "C": 0.0769371131264886,
+              "degree": 4,
+              "coef0": 9.07566473926093,
+              "gamma_type": "manual",
+              "gamma_value": 0.34143405132091054,
+              "epsilon": 0.0008226074946221043
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.708116",
+            "duration": 0.037802
+          },
+          {
+            "trial_number": 5,
+            "value": 0.39658713951954017,
+            "params": {
+              "C": 0.002896539524275864,
+              "degree": 3,
+              "coef0": 1.6122128725400442,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.16394127471631598
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.746186",
+            "duration": 0.001955
+          },
+          {
+            "trial_number": 6,
+            "value": 0.8166978934142086,
+            "params": {
+              "C": 0.013164984536291755,
+              "degree": 5,
+              "coef0": 5.393422419156507,
+              "gamma_type": "manual",
+              "gamma_value": 0.000809134743599756,
+              "epsilon": 0.00027555462077796626
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.748350",
+            "duration": 0.001925
+          },
+          {
+            "trial_number": 7,
+            "value": 0.933120985988435,
+            "params": {
+              "C": 0.023313687737449337,
+              "degree": 3,
+              "coef0": 8.18014765922493,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.0007734482156646796
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.750455",
+            "duration": 0.003048
+          },
+          {
+            "trial_number": 8,
+            "value": 0.897741937701619,
+            "params": {
+              "C": 0.005238322156582357,
+              "degree": 3,
+              "coef0": 9.429097039125192,
+              "gamma_type": "manual",
+              "gamma_value": 0.1652394547995709,
+              "epsilon": 0.0028478585168562965
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.753698",
+            "duration": 0.002318
+          },
+          {
+            "trial_number": 9,
+            "value": 0.436517994875107,
+            "params": {
+              "C": 677.1618710774369,
+              "degree": 5,
+              "coef0": 2.5178229582536416,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.027431991397796677
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.756260",
+            "duration": 0.01187
+          },
+          {
+            "trial_number": 10,
+            "value": 0.6264766821130314,
+            "params": {
+              "C": 632.0255260544478,
+              "degree": 2,
+              "coef0": 3.6443261331378194,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.9632619008569053
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.768369",
+            "duration": 0.003587
+          },
+          {
+            "trial_number": 11,
+            "value": 0.9032704364360225,
+            "params": {
+              "C": 0.09918548646647635,
+              "degree": 2,
+              "coef0": 6.8323952551554745,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.00012693601644598373
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.772229",
+            "duration": 0.004506
+          },
+          {
+            "trial_number": 12,
+            "value": -0.03569770467739204,
+            "params": {
+              "C": 42.064907651790065,
+              "degree": 3,
+              "coef0": 6.105443519032434,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.004003001969583581
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:47.776970",
+            "duration": 1.074862
+          },
+          {
+            "trial_number": 13,
+            "value": 0.8529056291074214,
+            "params": {
+              "C": 1.449655109413404,
+              "degree": 2,
+              "coef0": 0.07750009084279408,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.0011548393233065716
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:48.852169",
+            "duration": 0.004332
+          },
+          {
+            "trial_number": 14,
+            "value": -0.4892591933259579,
+            "params": {
+              "C": 0.08931128633479389,
+              "degree": 3,
+              "coef0": 8.056846650698956,
+              "gamma_type": "manual",
+              "gamma_value": 7.247939917164853,
+              "epsilon": 0.00701796225391552
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:48.856909",
+            "duration": 1.693408
+          },
+          {
+            "trial_number": 15,
+            "value": 0.9424475469199051,
+            "params": {
+              "C": 0.02480885147102573,
+              "degree": 4,
+              "coef0": 2.749128819305917,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.08797777609598795
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.550644",
+            "duration": 0.004195
+          },
+          {
+            "trial_number": 16,
+            "value": 0.854507495639036,
+            "params": {
+              "C": 0.001020234653441649,
+              "degree": 4,
+              "coef0": 2.8410716046858004,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.18282996031950308
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.555197",
+            "duration": 0.003734
+          },
+          {
+            "trial_number": 17,
+            "value": 0.727442648849507,
+            "params": {
+              "C": 114.2726662811226,
+              "degree": 5,
+              "coef0": 1.507892639881321,
+              "gamma_type": "manual",
+              "gamma_value": 0.00784334248606373,
+              "epsilon": 0.7701602609506343
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.559166",
+            "duration": 0.003536
+          },
+          {
+            "trial_number": 18,
+            "value": 0.8520428818292567,
+            "params": {
+              "C": 1.1777850996535328,
+              "degree": 4,
+              "coef0": 1.8836229810948724,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.07906372258048165
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.562915",
+            "duration": 0.005442
+          },
+          {
+            "trial_number": 19,
+            "value": 0.8148476009864171,
+            "params": {
+              "C": 0.32660469269582,
+              "degree": 4,
+              "coef0": 3.980372674106201,
+              "gamma_type": "manual",
+              "gamma_value": 0.0023701672079315308,
+              "epsilon": 0.012661419033592754
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.568566",
+            "duration": 0.003832
+          },
+          {
+            "trial_number": 20,
+            "value": 0.8372005787537035,
+            "params": {
+              "C": 6.322183444674458,
+              "degree": 5,
+              "coef0": 3.1047230067606946,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.07538495517709935
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.572830",
+            "duration": 0.00835
+          },
+          {
+            "trial_number": 21,
+            "value": 0.933246136701152,
+            "params": {
+              "C": 0.014016010445119347,
+              "degree": 3,
+              "coef0": 5.0737538930607,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.01356730754444179
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.581420",
+            "duration": 0.003834
+          },
+          {
+            "trial_number": 22,
+            "value": 0.9367007974608275,
+            "params": {
+              "C": 0.02528459016947551,
+              "degree": 3,
+              "coef0": 5.5738169299021045,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.014069061416751115
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.585472",
+            "duration": 0.004598
+          },
+          {
+            "trial_number": 23,
+            "value": 0.8514208037653731,
+            "params": {
+              "C": 0.20803724948134947,
+              "degree": 2,
+              "coef0": 0.9078712765760952,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.3847267842836771
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.590354",
+            "duration": 0.003915
+          },
+          {
+            "trial_number": 24,
+            "value": 0.6877591191223321,
+            "params": {
+              "C": 126.04780514057803,
+              "degree": 3,
+              "coef0": 6.196734167699981,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.09144362973680835
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:50.594524",
+            "duration": 0.994765
+          },
+          {
+            "trial_number": 25,
+            "value": 0.9050820218488207,
+            "params": {
+              "C": 0.03865478977425989,
+              "degree": 4,
+              "coef0": 2.364255217778016,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.02045369635866525
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.589605",
+            "duration": 0.004346
+          },
+          {
+            "trial_number": 26,
+            "value": -0.11265033036794195,
+            "params": {
+              "C": 0.0056503362274214165,
+              "degree": 3,
+              "coef0": 4.152056613807656,
+              "gamma_type": "manual",
+              "gamma_value": 0.00020715680996960276,
+              "epsilon": 0.05962236782585634
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.594335",
+            "duration": 0.003689
+          },
+          {
+            "trial_number": 27,
+            "value": 0.13773760587605283,
+            "params": {
+              "C": 0.0012783728300549072,
+              "degree": 2,
+              "coef0": 4.712491542807767,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.0059994003629125865
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.598233",
+            "duration": 0.004021
+          },
+          {
+            "trial_number": 28,
+            "value": 0.9376848976173244,
+            "params": {
+              "C": 0.29732359597314434,
+              "degree": 4,
+              "coef0": 3.3531574177000425,
+              "gamma_type": "manual",
+              "gamma_value": 0.059582619343921686,
+              "epsilon": 0.1499746510251259
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.602506",
+            "duration": 0.005121
+          },
+          {
+            "trial_number": 29,
+            "value": 0.9204447262690693,
+            "params": {
+              "C": 5.194334170917595,
+              "degree": 4,
+              "coef0": 3.314635006322579,
+              "gamma_type": "manual",
+              "gamma_value": 0.03596296113145455,
+              "epsilon": 0.2865077545367591
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.607892",
+            "duration": 0.004747
+          },
+          {
+            "trial_number": 30,
+            "value": 0.2101376818938153,
+            "params": {
+              "C": 0.4363011780300158,
+              "degree": 5,
+              "coef0": 0.9614602827907563,
+              "gamma_type": "manual",
+              "gamma_value": 3.111598748930336,
+              "epsilon": 0.4176612504108901
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.612984",
+            "duration": 0.003931
+          },
+          {
+            "trial_number": 31,
+            "value": 0.9317683930373235,
+            "params": {
+              "C": 0.04305661390140112,
+              "degree": 4,
+              "coef0": 7.270124884143546,
+              "gamma_type": "manual",
+              "gamma_value": 0.03245449130351683,
+              "epsilon": 0.11434438424754081
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.617139",
+            "duration": 0.004597
+          },
+          {
+            "trial_number": 32,
+            "value": 0.8465937420039257,
+            "params": {
+              "C": 0.22553384679123778,
+              "degree": 4,
+              "coef0": 2.103354193887549,
+              "gamma_type": "manual",
+              "gamma_value": 1.072834768334769,
+              "epsilon": 0.05324840505071788
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.621984",
+            "duration": 0.006206
+          },
+          {
+            "trial_number": 33,
+            "value": 0.757694079012259,
+            "params": {
+              "C": 0.009468205839659094,
+              "degree": 3,
+              "coef0": 5.768752222057466,
+              "gamma_type": "manual",
+              "gamma_value": 0.027474635045424335,
+              "epsilon": 0.18268947121178325
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.628441",
+            "duration": 0.003734
+          },
+          {
+            "trial_number": 34,
+            "value": 0.9135294652778525,
+            "params": {
+              "C": 2.526711216728477,
+              "degree": 4,
+              "coef0": 4.545786034545325,
+              "gamma_type": "manual",
+              "gamma_value": 0.005143025929609167,
+              "epsilon": 0.04492965358111355
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.632411",
+            "duration": 0.005777
+          },
+          {
+            "trial_number": 35,
+            "value": 0.13831334230991674,
+            "params": {
+              "C": 0.5566933090074871,
+              "degree": 3,
+              "coef0": 1.2969223344166145,
+              "gamma_type": "manual",
+              "gamma_value": 0.0011371975112608604,
+              "epsilon": 0.02127389054443356
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.638427",
+            "duration": 0.004205
+          },
+          {
+            "trial_number": 36,
+            "value": 0.8152655516975911,
+            "params": {
+              "C": 17.002880605153454,
+              "degree": 4,
+              "coef0": 0.47501295809505006,
+              "gamma_type": "manual",
+              "gamma_value": 0.06102125168693365,
+              "epsilon": 0.5294171066379617
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.642866",
+            "duration": 0.003826
+          },
+          {
+            "trial_number": 37,
+            "value": 0.9488513374023002,
+            "params": {
+              "C": 0.03310552610217494,
+              "degree": 4,
+              "coef0": 3.557770700359621,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.1420921892000485
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.646897",
+            "duration": 0.004276
+          },
+          {
+            "trial_number": 38,
+            "value": 0.9276490048222117,
+            "params": {
+              "C": 0.10724804671114913,
+              "degree": 4,
+              "coef0": 3.617570729750818,
+              "gamma_type": "manual",
+              "gamma_value": 0.6108230193934214,
+              "epsilon": 0.12950237342724757
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.651374",
+            "duration": 0.004624
+          },
+          {
+            "trial_number": 39,
+            "value": 0.9119224474820781,
+            "params": {
+              "C": 0.0029998337731831303,
+              "degree": 4,
+              "coef0": 2.7402269994248423,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.27310686512436827
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.656266",
+            "duration": 0.00383
+          },
+          {
+            "trial_number": 40,
+            "value": 0.9286526011412111,
+            "params": {
+              "C": 0.03923779687571562,
+              "degree": 5,
+              "coef0": 2.008072472159212,
+              "gamma_type": "manual",
+              "gamma_value": 0.12213111706123037,
+              "epsilon": 0.03326204312735139
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.660311",
+            "duration": 0.004048
+          },
+          {
+            "trial_number": 41,
+            "value": 0.9411731215998655,
+            "params": {
+              "C": 0.0161314056159797,
+              "degree": 3,
+              "coef0": 3.6975801867336773,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.13936707731013653
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.664565",
+            "duration": 0.003793
+          },
+          {
+            "trial_number": 42,
+            "value": 0.9296244017377117,
+            "params": {
+              "C": 0.01589863385894276,
+              "degree": 4,
+              "coef0": 3.5853528543583675,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.2510106446634963
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.668563",
+            "duration": 0.004038
+          },
+          {
+            "trial_number": 43,
+            "value": 0.9151411723624736,
+            "params": {
+              "C": 0.006995020845798713,
+              "degree": 3,
+              "coef0": 3.1861561111143324,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.14660235014907289
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.672860",
+            "duration": 0.003827
+          },
+          {
+            "trial_number": 44,
+            "value": 0.7138608643076045,
+            "params": {
+              "C": 0.002365159688850809,
+              "degree": 3,
+              "coef0": 3.865341358476248,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.5669461173291068
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.676912",
+            "duration": 0.003728
+          },
+          {
+            "trial_number": 45,
+            "value": 0.9413302996598771,
+            "params": {
+              "C": 0.18150492007424693,
+              "degree": 4,
+              "coef0": 4.483791079817223,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.20489223461155817
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.680863",
+            "duration": 0.004162
+          },
+          {
+            "trial_number": 46,
+            "value": 0.9231355357807868,
+            "params": {
+              "C": 0.13767013117181706,
+              "degree": 3,
+              "coef0": 4.435071758464114,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.2565212568272932
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.685225",
+            "duration": 0.003782
+          },
+          {
+            "trial_number": 47,
+            "value": 0.9143446168825118,
+            "params": {
+              "C": 0.057998462877118816,
+              "degree": 4,
+              "coef0": 4.951571282686199,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.0970937803497868
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.689204",
+            "duration": 0.007432
+          },
+          {
+            "trial_number": 48,
+            "value": 0.9343519581328359,
+            "params": {
+              "C": 0.019523130496717344,
+              "degree": 3,
+              "coef0": 2.4773101304846907,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.05137891863503032
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.696910",
+            "duration": 0.003855
+          },
+          {
+            "trial_number": 49,
+            "value": 0.9494406971787323,
+            "params": {
+              "C": 170.4971037435674,
+              "degree": 4,
+              "coef0": 1.6780479417526968,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.20692892002735347
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.700981",
+            "duration": 0.003851
+          }
+        ],
+        "best_cv_scores": [
+          0.943835045852617,
+          0.955415465707414,
+          0.9448301309433085,
+          0.9420882349528286,
+          0.9610346084374928
+        ],
+        "best_cv_std": 0.007441182511293317
+      }
+    },
+    "sigmoid": {
+      "best_params": {
+        "kernel": "sigmoid",
+        "C": 0.05215966819267305,
+        "coef0": 6.50992782121629,
+        "gamma": 9.221380325166809,
+        "epsilon": 0.014590639549596834
+      },
+      "best_score": 0.4777494660971485,
+      "optimization_results": {
+        "best_params": {
+          "kernel": "sigmoid",
+          "C": 0.05215966819267305,
+          "coef0": 6.50992782121629,
+          "gamma": 9.221380325166809,
+          "epsilon": 0.014590639549596834
+        },
+        "best_score": 0.4777494660971485,
+        "best_trial_number": 16,
+        "n_trials": 50,
+        "n_completed_trials": 50,
+        "task_type": "regression",
+        "sampler_type": "TPE",
+        "optimization_history": [
+          {
+            "trial_number": 0,
+            "value": -0.08785364743289023,
+            "params": {
+              "C": 1.037705549711512,
+              "coef0": 0.5147875124998935,
+              "gamma_type": "manual",
+              "gamma_value ": 0.0002737608521191864,
+              "epsilon": 0.00037982145084532605
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.712174",
+            "duration": 0.002108
+          },
+          {
+            "trial_number": 1,
+            "value": -0.10755847187126336,
+            "params": {
+              "C": 0.8644035895206825,
+              "coef0": 9.856504541106007,
+              "gamma_type": "manual",
+              "gamma_value ": 0.37129379546378294,
+              "epsilon": 0.0008923807143379785
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.714466",
+            "duration": 0.00186
+          },
+          {
+            "trial_number": 2,
+            "value": -0.0245852939592597,
+            "params": {
+              "C": 23.40443124189262,
+              "coef0": 3.677831327192532,
+              "gamma_type": "manual",
+              "gamma_value ": 0.01639260991832771,
+              "epsilon": 0.00022969898716342104
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.716517",
+            "duration": 0.00185
+          },
+          {
+            "trial_number": 3,
+            "value": -390.28488126433507,
+            "params": {
+              "C": 102.75784161907372,
+              "coef0": 3.2078006497173583,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.0001165068111898614
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.718542",
+            "duration": 0.002227
+          },
+          {
+            "trial_number": 4,
+            "value": -0.7665626473299234,
+            "params": {
+              "C": 1.1818390883060221,
+              "coef0": 2.2649577519793795,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.5583672722754819
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.720988",
+            "duration": 0.00228
+          },
+          {
+            "trial_number": 5,
+            "value": 0.004608220331772439,
+            "params": {
+              "C": 0.006685373335828941,
+              "coef0": 3.410663510502585,
+              "gamma_type": "manual",
+              "gamma_value ": 1.836691094652907,
+              "epsilon": 0.0010758866306767928
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.723490",
+            "duration": 0.002093
+          },
+          {
+            "trial_number": 6,
+            "value": -0.16344324381639214,
+            "params": {
+              "C": 9.118098432074817,
+              "coef0": 8.172222002012159,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.3880279700786686
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.725868",
+            "duration": 0.001857
+          },
+          {
+            "trial_number": 7,
+            "value": -0.05409326593877508,
+            "params": {
+              "C": 252.64362435704464,
+              "coef0": 6.33101457273268,
+              "gamma_type": "manual",
+              "gamma_value ": 0.22684753958641254,
+              "epsilon": 0.3876511170911629
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.727905",
+            "duration": 0.001793
+          },
+          {
+            "trial_number": 8,
+            "value": -0.10681732390475225,
+            "params": {
+              "C": 210.14475048247203,
+              "coef0": 7.798755458576238,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.026651167490553532
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.729874",
+            "duration": 0.001993
+          },
+          {
+            "trial_number": 9,
+            "value": -0.1076592033848706,
+            "params": {
+              "C": 0.0011354873746139864,
+              "coef0": 1.014715428660321,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.05855726588796254
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.732073",
+            "duration": 0.001953
+          },
+          {
+            "trial_number": 10,
+            "value": -0.03360196542931597,
+            "params": {
+              "C": 0.0024949337330040055,
+              "coef0": 4.996900155738619,
+              "gamma_type": "manual",
+              "gamma_value ": 5.818926007181243,
+              "epsilon": 0.0025724391487280435
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.734199",
+            "duration": 0.003395
+          },
+          {
+            "trial_number": 11,
+            "value": -0.10754287771107225,
+            "params": {
+              "C": 0.07866971805568873,
+              "coef0": 4.055560251979076,
+              "gamma_type": "manual",
+              "gamma_value ": 0.0020287431221974283,
+              "epsilon": 0.0028039369750565905
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.737790",
+            "duration": 0.003986
+          },
+          {
+            "trial_number": 12,
+            "value": -0.10535728001481401,
+            "params": {
+              "C": 0.027161896201015518,
+              "coef0": 2.471009215442641,
+              "gamma_type": "manual",
+              "gamma_value ": 0.03250755516465368,
+              "epsilon": 0.00012778036692855205
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.742009",
+            "duration": 0.003321
+          },
+          {
+            "trial_number": 13,
+            "value": -0.10755554937678524,
+            "params": {
+              "C": 8.979586755094195,
+              "coef0": 4.700277713568053,
+              "gamma_type": "manual",
+              "gamma_value ": 1.7232349336481177e-05,
+              "epsilon": 0.0009115093028958406
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.745536",
+            "duration": 0.00328
+          },
+          {
+            "trial_number": 14,
+            "value": 0.3480184392349976,
+            "params": {
+              "C": 0.019678520188897052,
+              "coef0": 6.070323587703556,
+              "gamma_type": "manual",
+              "gamma_value ": 9.149075509836983,
+              "epsilon": 0.007974116942879117
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.749022",
+            "duration": 0.003317
+          },
+          {
+            "trial_number": 15,
+            "value": 0.20313017322102125,
+            "params": {
+              "C": 0.013970277645806353,
+              "coef0": 6.183542740050975,
+              "gamma_type": "manual",
+              "gamma_value ": 6.203936134508959,
+              "epsilon": 0.008458121766965518
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.752542",
+            "duration": 0.00347
+          },
+          {
+            "trial_number": 16,
+            "value": 0.4777494660971485,
+            "params": {
+              "C": 0.05215966819267305,
+              "coef0": 6.50992782121629,
+              "gamma_type": "manual",
+              "gamma_value ": 9.221380325166809,
+              "epsilon": 0.014590639549596834
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.756254",
+            "duration": 0.003372
+          },
+          {
+            "trial_number": 17,
+            "value": -0.11905186900572691,
+            "params": {
+              "C": 0.1039974460601616,
+              "coef0": 6.515006811805267,
+              "gamma_type": "manual",
+              "gamma_value ": 0.39884700006691065,
+              "epsilon": 0.07192507822555932
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.759833",
+            "duration": 0.003286
+          },
+          {
+            "trial_number": 18,
+            "value": -2.220444010482045,
+            "params": {
+              "C": 0.20264236233653138,
+              "coef0": 7.876587734016233,
+              "gamma_type": "manual",
+              "gamma_value ": 8.065890537524298,
+              "epsilon": 0.011660359603014132
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.763340",
+            "duration": 0.003428
+          },
+          {
+            "trial_number": 19,
+            "value": -0.10756008146994053,
+            "params": {
+              "C": 0.031685943356061015,
+              "coef0": 9.606353357907768,
+              "gamma_type": "manual",
+              "gamma_value ": 0.13891762731736768,
+              "epsilon": 0.008722000380270562
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.766977",
+            "duration": 0.003194
+          },
+          {
+            "trial_number": 20,
+            "value": -0.5650911625814298,
+            "params": {
+              "C": 0.3701421395500312,
+              "coef0": 6.950223908868068,
+              "gamma_type": "manual",
+              "gamma_value ": 0.9989382914710925,
+              "epsilon": 0.0787094301213817
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.770372",
+            "duration": 0.003556
+          },
+          {
+            "trial_number": 21,
+            "value": 0.14514850131762175,
+            "params": {
+              "C": 0.00976920230057095,
+              "coef0": 5.718649032890361,
+              "gamma_type": "manual",
+              "gamma_value ": 9.066074642503002,
+              "epsilon": 0.008517969403714874
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.774145",
+            "duration": 0.00331
+          },
+          {
+            "trial_number": 22,
+            "value": -0.006314176994973853,
+            "params": {
+              "C": 0.010763711941677172,
+              "coef0": 5.6632162658231655,
+              "gamma_type": "manual",
+              "gamma_value ": 2.335370979802269,
+              "epsilon": 0.02249176407845425
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.777643",
+            "duration": 0.003378
+          },
+          {
+            "trial_number": 23,
+            "value": 0.01582311694158951,
+            "params": {
+              "C": 0.03475314533765392,
+              "coef0": 7.261249452545623,
+              "gamma_type": "manual",
+              "gamma_value ": 1.6419111203509458,
+              "epsilon": 0.0037898862186993057
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.781208",
+            "duration": 0.003312
+          },
+          {
+            "trial_number": 24,
+            "value": -0.11358860816074481,
+            "params": {
+              "C": 0.003474746030132661,
+              "coef0": 8.921596861058156,
+              "gamma_type": "manual",
+              "gamma_value ": 0.08450977357009216,
+              "epsilon": 0.029125274420017448
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.784709",
+            "duration": 0.003457
+          },
+          {
+            "trial_number": 25,
+            "value": -0.07100906435099541,
+            "params": {
+              "C": 0.0011163232266008431,
+              "coef0": 5.623482895755858,
+              "gamma_type": "manual",
+              "gamma_value ": 9.279298437595418,
+              "epsilon": 0.003763547687105765
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.788371",
+            "duration": 0.003452
+          },
+          {
+            "trial_number": 26,
+            "value": -0.12473181211252315,
+            "params": {
+              "C": 0.01691835313038164,
+              "coef0": 4.455680811580647,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.1539946682675231
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.792032",
+            "duration": 0.003189
+          },
+          {
+            "trial_number": 27,
+            "value": -0.07628090683336115,
+            "params": {
+              "C": 0.07504518635414192,
+              "coef0": 6.456545409756122,
+              "gamma_type": "manual",
+              "gamma_value ": 0.7922182663466462,
+              "epsilon": 0.014493166176915333
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.795428",
+            "duration": 0.00334
+          },
+          {
+            "trial_number": 28,
+            "value": -0.10756008962244393,
+            "params": {
+              "C": 0.0037264354406248506,
+              "coef0": 8.504557381880833,
+              "gamma_type": "manual",
+              "gamma_value ": 0.0015490615516189975,
+              "epsilon": 0.005217419244681424
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.798963",
+            "duration": 0.003316
+          },
+          {
+            "trial_number": 29,
+            "value": -14.195077541489628,
+            "params": {
+              "C": 0.5152504229554504,
+              "coef0": 7.209263772337801,
+              "gamma_type": "manual",
+              "gamma_value ": 2.5054990859866058,
+              "epsilon": 0.001591468292074324
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.802478",
+            "duration": 0.00363
+          },
+          {
+            "trial_number": 30,
+            "value": -323.8059247699556,
+            "params": {
+              "C": 2.098662010032551,
+              "coef0": 5.6003066917328495,
+              "gamma_type": "manual",
+              "gamma_value ": 3.2646661286409318,
+              "epsilon": 0.042851314424457485
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.806336",
+            "duration": 0.003407
+          },
+          {
+            "trial_number": 31,
+            "value": 0.15273173660404743,
+            "params": {
+              "C": 0.009868830248944947,
+              "coef0": 5.706239935605801,
+              "gamma_type": "manual",
+              "gamma_value ": 9.684173487037219,
+              "epsilon": 0.0064236537635926644
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.809935",
+            "duration": 0.00357
+          },
+          {
+            "trial_number": 32,
+            "value": -0.6757039570518301,
+            "params": {
+              "C": 0.14767202025222073,
+              "coef0": 5.160503545191868,
+              "gamma_type": "manual",
+              "gamma_value ": 3.7759996257663144,
+              "epsilon": 0.00642131492808065
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.813743",
+            "duration": 0.003533
+          },
+          {
+            "trial_number": 33,
+            "value": -0.10717297101828467,
+            "params": {
+              "C": 0.04644125095646543,
+              "coef0": 6.172354964335863,
+              "gamma_type": "manual",
+              "gamma_value ": 0.5589756593773246,
+              "epsilon": 0.01570567245400287
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.817474",
+            "duration": 0.003295
+          },
+          {
+            "trial_number": 34,
+            "value": 0.06901310234496352,
+            "params": {
+              "C": 0.006605192346084908,
+              "coef0": 6.989624726174098,
+              "gamma_type": "manual",
+              "gamma_value ": 9.940077745933083,
+              "epsilon": 0.001870855966503792
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.821030",
+            "duration": 0.003762
+          },
+          {
+            "trial_number": 35,
+            "value": -0.01046516553794985,
+            "params": {
+              "C": 0.015471682624775843,
+              "coef0": 4.209204794933052,
+              "gamma_type": "manual",
+              "gamma_value ": 1.246517464025365,
+              "epsilon": 0.0004614016776586619
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.825029",
+            "duration": 0.003293
+          },
+          {
+            "trial_number": 36,
+            "value": -0.10587136036656597,
+            "params": {
+              "C": 0.25781097595268326,
+              "coef0": 5.102334584425519,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.0005097630778977126
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.828593",
+            "duration": 0.003115
+          },
+          {
+            "trial_number": 37,
+            "value": -0.10755531594263293,
+            "params": {
+              "C": 724.7560470100289,
+              "coef0": 7.607978762125947,
+              "gamma_type": "manual",
+              "gamma_value ": 7.528913256273429e-05,
+              "epsilon": 0.005716401182698693
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.831912",
+            "duration": 0.003706
+          },
+          {
+            "trial_number": 38,
+            "value": -0.12063211503232134,
+            "params": {
+              "C": 0.0021494184554636834,
+              "coef0": 6.142502974604047,
+              "gamma_type": "manual",
+              "gamma_value ": 0.0043473557573453555,
+              "epsilon": 0.11930178567438283
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.835854",
+            "duration": 0.003513
+          },
+          {
+            "trial_number": 39,
+            "value": 0.12590694531451335,
+            "params": {
+              "C": 0.9343840583765564,
+              "coef0": 2.680755937621261,
+              "gamma_type": "auto",
+              "gamma_mode": "auto",
+              "epsilon": 0.015816436737273676
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.839580",
+            "duration": 0.00373
+          },
+          {
+            "trial_number": 40,
+            "value": -440.7391127405114,
+            "params": {
+              "C": 2.499984665013835,
+              "coef0": 6.764943032000157,
+              "gamma_type": "manual",
+              "gamma_value ": 3.8520306507294086,
+              "epsilon": 0.0014447623662470416
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.843531",
+            "duration": 0.003489
+          },
+          {
+            "trial_number": 41,
+            "value": 0.0787726412049244,
+            "params": {
+              "C": 0.007089225189110164,
+              "coef0": 5.858071398207338,
+              "gamma_type": "manual",
+              "gamma_value ": 8.65091989504148,
+              "epsilon": 0.010166639192002405
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.847212",
+            "duration": 0.003472
+          },
+          {
+            "trial_number": 42,
+            "value": 0.15193975336104043,
+            "params": {
+              "C": 0.01208435362507756,
+              "coef0": 5.123400929593189,
+              "gamma_type": "manual",
+              "gamma_value ": 4.0503629002764745,
+              "epsilon": 0.007765921988674504
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.850880",
+            "duration": 0.003428
+          },
+          {
+            "trial_number": 43,
+            "value": 0.2670480096739297,
+            "params": {
+              "C": 0.017360028692857014,
+              "coef0": 3.5394888613762054,
+              "gamma_type": "manual",
+              "gamma_value ": 3.367720723265394,
+              "epsilon": 0.037510700659487084
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.854498",
+            "duration": 0.003796
+          },
+          {
+            "trial_number": 44,
+            "value": 0.22636362336258972,
+            "params": {
+              "C": 0.025601786384706195,
+              "coef0": 3.484568001432158,
+              "gamma_type": "manual",
+              "gamma_value ": 1.7153904925760886,
+              "epsilon": 0.031203336238694725
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.858519",
+            "duration": 0.003325
+          },
+          {
+            "trial_number": 45,
+            "value": -0.09751697500675158,
+            "params": {
+              "C": 0.06484709452827801,
+              "coef0": 3.1943090593389654,
+              "gamma_type": "auto",
+              "gamma_mode": "scale",
+              "epsilon": 0.03678482334638995
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.862041",
+            "duration": 0.003396
+          },
+          {
+            "trial_number": 46,
+            "value": -0.04688815169578555,
+            "params": {
+              "C": 0.02451249486980536,
+              "coef0": 1.8669959414961363,
+              "gamma_type": "manual",
+              "gamma_value ": 0.26198267542041553,
+              "epsilon": 0.050297308511213175
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.865672",
+            "duration": 0.003631
+          },
+          {
+            "trial_number": 47,
+            "value": -0.07946257238077734,
+            "params": {
+              "C": 0.003996579187111395,
+              "coef0": 3.7449662508164465,
+              "gamma_type": "manual",
+              "gamma_value ": 1.4903250245630053,
+              "epsilon": 0.17490976299663813
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.869497",
+            "duration": 0.003514
+          },
+          {
+            "trial_number": 48,
+            "value": 0.13472669034839918,
+            "params": {
+              "C": 0.1315767697301764,
+              "coef0": 1.7581292784908276,
+              "gamma_type": "manual",
+              "gamma_value ": 0.6485726280678193,
+              "epsilon": 0.02687662125346199
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.873321",
+            "duration": 0.003859
+          },
+          {
+            "trial_number": 49,
+            "value": 0.05200117193620355,
+            "params": {
+              "C": 0.0482060512286458,
+              "coef0": 0.3685958152415272,
+              "gamma_type": "manual",
+              "gamma_value ": 0.0486410725681938,
+              "epsilon": 0.021119073467642743
+            },
+            "state": "COMPLETE",
+            "datetime": "2025-09-22T02:19:51.877369",
+            "duration": 0.00336
+          }
+        ],
+        "best_cv_scores": [
+          0.2851017404496814,
+          0.370681926165788,
+          0.7821452473889682,
+          0.6378452936340523,
+          0.31297312284725287
+        ],
+        "best_cv_std": 0.19698493001338252
+      }
+    }
+  },
+  "trials_dataframe": "     number     value             datetime_start  ... params_coef0 params_degree  params_gamma_value \n0         0  0.764233 2025-09-22 02:19:47.015116  ...          NaN           NaN                  NaN\n1         1  0.795491 2025-09-22 02:19:47.019971  ...          NaN           NaN                  NaN\n2         2  0.428458 2025-09-22 02:19:47.030335  ...          NaN           NaN                  NaN\n3         3  0.012719 2025-09-22 02:19:47.032629  ...          NaN           NaN                  NaN\n4         4  0.813134 2025-09-22 02:19:47.034773  ...          NaN           NaN                  NaN\n..      ...       ...                        ...  ...          ...           ...                  ...\n195      45 -0.097517 2025-09-22 02:19:51.862041  ...     3.194309           NaN                  NaN\n196      46 -0.046888 2025-09-22 02:19:51.865672  ...     1.866996           NaN             0.261983\n197      47 -0.079463 2025-09-22 02:19:51.869497  ...     3.744966           NaN             1.490325\n198      48  0.134727 2025-09-22 02:19:51.873321  ...     1.758129           NaN             0.648573\n199      49  0.052001 2025-09-22 02:19:51.877369  ...     0.368596           NaN             0.048641\n\n[200 rows x 18 columns]",
+  "optimization_summary": {
+    "linear": {
+      "best_score": 0.8754448567901936,
+      "success": true
+    },
+    "rbf": {
+      "best_score": 0.9356154224025779,
+      "success": true
+    },
+    "poly": {
+      "best_score": 0.9494406971787323,
+      "success": true
+    },
+    "sigmoid": {
+      "best_score": 0.4777494660971485,
+      "success": true
+    }
+  },
+  "parameter_ranges": {
+    "C": {
+      "range": [
+        0.001,
+        1000.0
+      ],
+      "scale": "log",
+      "description": "Regularization parameter. Controls the trade-off between maximizing the margin and minimizing the classification error."
+    },
+    "kernel": {
+      "options": [
+        "linear",
+        "rbf",
+        "poly",
+        "sigmoid"
+      ],
+      "description": "Kernel type to be used in the algorithm. Maps inputs to higher-dimensional spaces."
+    },
+    "degree": {
+      "range": [
+        2,
+        5
+      ],
+      "step": 1,
+      "description": "Degree of the polynomial kernel function ('poly'). Ignored by other kernels."
+    },
+    "gamma": {
+      "options": [
+        "scale",
+        "auto"
+      ],
+      "alt_range": [
+        1e-05,
+        10.0
+      ],
+      "scale": "log",
+      "description": "Kernel coefficient for 'rbf', 'poly' and 'sigmoid'. Defines the influence of training samples."
+    },
+    "coef0": {
+      "range": [
+        0.0,
+        10.0
+      ],
+      "description": "Independent term in kernel function. Only significant in 'poly' and 'sigmoid'."
+    },
+    "class_weight": {
+      "options": [
+        "balanced",
+        null
+      ],
+      "description": "Weights for classes to address imbalanced datasets. Only for classification tasks."
+    },
+    "epsilon": {
+      "range": [
+        0.0001,
+        1.0
+      ],
+      "scale": "log",
+      "description": "Specifies the epsilon-tube within which no penalty is associated in the loss function. Only for regression tasks."
+    }
+  }
+}

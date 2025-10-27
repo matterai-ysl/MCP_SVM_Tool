@@ -1,0 +1,54 @@
+{
+  "is_fitted": true,
+  "target_is_fitted": true,
+  "config": {
+    "numerical_features": [
+      "SiO2",
+      "CeO2",
+      "Lignin",
+      "2-VN"
+    ],
+    "categorical_features": [],
+    "scaling_method": "standard",
+    "impute_missing": true,
+    "use_one_hot": true,
+    "target_task_type": "regression",
+    "target_scaling_method": "standard",
+    "target_names": [
+      "target"
+    ],
+    "target_shape": [
+      53
+    ]
+  },
+  "feature_names_in": [
+    "SiO2",
+    "CeO2",
+    "Lignin",
+    "2-VN"
+  ],
+  "feature_names_out": [
+    "SiO2",
+    "CeO2",
+    "Lignin",
+    "2-VN"
+  ],
+  "target_names": [
+    "target"
+  ],
+  "input_feature_count": 4,
+  "output_feature_count": 4,
+  "preprocessing_steps": [
+    {
+      "transformer_name": "numerical",
+      "columns": [
+        "SiO2",
+        "CeO2",
+        "Lignin",
+        "2-VN"
+      ],
+      "column_count": 4,
+      "scaling_method": "standard"
+    }
+  ]
+}
