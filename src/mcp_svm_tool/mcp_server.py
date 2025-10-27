@@ -30,6 +30,54 @@ from starlette.responses import PlainTextResponse
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Serialization helper function
+def serialize_for_json(obj) -> Any:
+    """
+    Convert numpy arrays and other non-serializable objects to JSON-serializable formats.
+
+    Handles:
+    - numpy arrays -> lists
+    - numpy integers -> int
+    - numpy floats -> float
+    - numpy bools -> bool
+    - nested dicts, lists, tuples, sets
+    - datetime objects -> isoformat string
+    - None -> None
+    - Other objects -> string representation
+
+    Args:
+        obj: Object to serialize
+
+    Returns:
+        JSON-serializable version of the object
+    """
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.bool_):
+        return bool(obj)
+    elif isinstance(obj, dict):
+        return {key: serialize_for_json(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [serialize_for_json(item) for item in obj]
+    elif isinstance(obj, tuple):
+        return [serialize_for_json(item) for item in obj]
+    elif isinstance(obj, set):
+        return [serialize_for_json(item) for item in obj]
+    elif hasattr(obj, 'isoformat'):  # datetime objects
+        return obj.isoformat()
+    elif obj is None:
+        return None
+    else:
+        # For other objects, try to convert to string as fallback
+        try:
+            return str(obj)
+        except:
+            return None
+
 # User directory management functions
 def get_user_id(ctx: Optional[Context] = None) -> Optional[str]:
     """Extract user ID from MCP context."""
@@ -231,15 +279,15 @@ async def train_svm_classifier(
                 scaling_method=scaling_method
             )
         )
-        
+
         logger.info("SVM classification training completed successfully")
-        return result
-        
+        return serialize_for_json(result)
+
     except Exception as e:
         error_msg = f"SVM classification training failed: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def train_svm_regressor(
@@ -368,15 +416,15 @@ async def train_svm_regressor(
                 scaling_method=scaling_method
             )
         )
-        
+
         logger.info("SVM regression training completed successfully")
-        return result
-        
+        return serialize_for_json(result)
+
     except Exception as e:
         error_msg = f"SVM regression training failed: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def predict_from_file_svm(
@@ -421,15 +469,15 @@ async def predict_from_file_svm(
                 generate_report=generate_report
             )
         )
-        
+
         logger.info("Batch prediction completed successfully")
-        return result
-        
+        return serialize_for_json(result)
+
     except Exception as e:
         error_msg = f"Batch prediction failed: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def predict_from_values_svm(
@@ -484,15 +532,15 @@ async def predict_from_values_svm(
                 output_path=output_path
             )
         )
-        
+
         logger.info("Real-time prediction completed successfully")
-        return result
-        
+        return serialize_for_json(result)
+
     except Exception as e:
         error_msg = f"Real-time prediction failed: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def list_svm_models(ctx: Context = None) -> List[Dict[str, Any]]: # type: ignore
@@ -516,15 +564,15 @@ async def list_svm_models(ctx: Context = None) -> List[Dict[str, Any]]: # type: 
         models = await asyncio.get_event_loop().run_in_executor(
             None, user_model_manager.list_models
         )
-        
+
         logger.info(f"Found {len(models)} available models")
-        return models
-        
+        return serialize_for_json(models)
+
     except Exception as e:
         error_msg = f"Failed to list models: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()} # type: ignore
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()}) # type: ignore
 
 @mcp.tool()
 async def get_svm_model_info(model_id: str, ctx: Context = None) -> Dict[str, Any]: # type: ignore
@@ -551,15 +599,15 @@ async def get_svm_model_info(model_id: str, ctx: Context = None) -> Dict[str, An
         model_info = await asyncio.get_event_loop().run_in_executor(
             None, user_model_manager.get_model_info, model_id
         )
-        
+
         logger.info("Model information retrieved successfully")
-        return model_info
-        
+        return serialize_for_json(model_info)
+
     except Exception as e:
         error_msg = f"Failed to get model info: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def delete_svm_model(model_id: str, ctx: Context = None) -> Dict[str, Any]: # type: ignore
@@ -591,14 +639,14 @@ async def delete_svm_model(model_id: str, ctx: Context = None) -> Dict[str, Any]
             logger.info("Model deleted successfully")
         else:
             logger.warning(f"Model deletion failed: {result.get('error', 'Unknown error')}")
-        
-        return result
-        
+
+        return serialize_for_json(result)
+
     except Exception as e:
         error_msg = f"Failed to delete model: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 # Asynchronous Training Queue Tools
 
@@ -678,19 +726,19 @@ async def submit_svm_training_task(
         )
 
         logger.info(f"Training task submitted successfully with model_id: {model_id}")
-        return {
+        return serialize_for_json({
             'success': True,
             'model_id': model_id,
             'task_type': task_type,
             'message': f'Training task submitted to queue. Use model_id {model_id} to track progress and manage the model.',
             'queue_status': await queue_manager.get_queue_status()
-        }
+        })
 
     except Exception as e:
         error_msg = f"Failed to submit training task: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def get_svm_task_status(model_id: str) -> Dict[str, Any]:
@@ -710,22 +758,22 @@ async def get_svm_task_status(model_id: str) -> Dict[str, Any]:
         task_status = await queue_manager.get_task_status(model_id)
 
         if task_status is None:
-            return {
+            return serialize_for_json({
                 'error': f'Task with model_id {model_id} not found',
                 'success': False
-            }
+            })
 
         logger.info(f"Task status for model_id {model_id} retrieved successfully")
-        return {
+        return serialize_for_json({
             'success': True,
             **task_status
-        }
+        })
 
     except Exception as e:
         error_msg = f"Failed to get task status: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def list_svm_training_tasks(
@@ -756,22 +804,22 @@ async def list_svm_training_tasks(
             try:
                 status_filter = TaskStatus(status.lower())
             except ValueError:
-                return {
+                return serialize_for_json({
                     'error': f'Invalid status: {status}. Valid options: queued, running, completed, failed, cancelled',
                     'success': False
-                }
-        
+                })
+
         tasks = await queue_manager.list_tasks(
             user_id=user_id,
             status=status_filter
         )
-        
+
         # Apply limit
         if limit and len(tasks) > limit:
             tasks = tasks[:limit]
-        
+
         logger.info(f"Retrieved {len(tasks)} training tasks")
-        return {
+        return serialize_for_json({
             'success': True,
             'tasks': tasks,
             'total_count': len(tasks),
@@ -780,13 +828,13 @@ async def list_svm_training_tasks(
                 'status': status,
                 'limit': limit
             }
-        }
-        
+        })
+
     except Exception as e:
         error_msg = f"Failed to list training tasks: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def cancel_svm_training_task(model_id: str) -> Dict[str, Any]:
@@ -807,23 +855,23 @@ async def cancel_svm_training_task(model_id: str) -> Dict[str, Any]:
 
         if success:
             logger.info(f"Task with model_id {model_id} cancelled successfully")
-            return {
+            return serialize_for_json({
                 'success': True,
                 'model_id': model_id,
                 'message': f'Task with model_id {model_id} has been cancelled'
-            }
+            })
         else:
-            return {
+            return serialize_for_json({
                 'success': False,
                 'model_id': model_id,
                 'message': f'Task with model_id {model_id} could not be cancelled (not found or already completed)'
-            }
+            })
 
     except Exception as e:
         error_msg = f"Failed to cancel training task: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 @mcp.tool()
 async def get_svm_queue_status() -> Dict[str, Any]:
@@ -838,18 +886,18 @@ async def get_svm_queue_status() -> Dict[str, Any]:
         
         queue_manager = get_queue_manager()
         queue_status = await queue_manager.get_queue_status()
-        
+
         logger.info("Queue status retrieved successfully")
-        return {
+        return serialize_for_json({
             'success': True,
             **queue_status
-        }
-        
+        })
+
     except Exception as e:
         error_msg = f"Failed to get queue status: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
-        return {"error": error_msg, "traceback": traceback.format_exc()}
+        return serialize_for_json({"error": error_msg, "traceback": traceback.format_exc()})
 
 
 def _create_analysis_archive(output_dir: Path, analysis_type: str, model_id: str) -> str:
