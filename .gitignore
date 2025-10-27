@@ -8,8 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
-.trained_models/
-.reports/
+trained_models/
+reports/
 # Logs
 logs
 *.log
